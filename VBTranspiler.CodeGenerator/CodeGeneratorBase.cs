@@ -18,7 +18,7 @@ using VBTranspiler.Parser;
 
 namespace VBTranspiler.CodeGenerator
 {
-  public class RoslynCodeGenerator : VisualBasic6BaseVisitor<RoslynCodeGenerator>
+  public abstract class CodeGeneratorBase : VisualBasic6BaseVisitor<CodeGeneratorBase>
   {
     /// <summary>
     /// The parse tree to generate code from.
@@ -26,35 +26,18 @@ namespace VBTranspiler.CodeGenerator
     private VisualBasic6Parser.ModuleContext mParseTree;
 
     /// <summary>
-    /// Members of the main class.
+    /// Members of the main class/module.
     /// </summary>
-    private List<StatementSyntax> mClassMembers;
-
-    /// <summary>
-    /// The type of input source.
-    /// </summary>
-    private SourceType mType;
-
-    /// <summary>
-    /// Type of the source file the code is being generated for.
-    /// </summary>
-    public enum SourceType
-    {
-      Form = 0,
-      Module,
-      Class,
-      UserControl
-    }
+    private List<StatementSyntax> mMainDeclMembers;
 
     /// <summary>
     /// Initialises this instance with the given VB6 AST.
     /// </summary>
     /// <param name="parseTree"></param>
-    public RoslynCodeGenerator(VisualBasic6Parser.ModuleContext parseTree, SourceType type)
+    public CodeGeneratorBase(VisualBasic6Parser.ModuleContext parseTree)
     {
       mParseTree = parseTree;
-      mClassMembers = new List<StatementSyntax>();
-      mType = type;
+      mMainDeclMembers = new List<StatementSyntax>();
     }
 
     /// <summary>
@@ -69,17 +52,14 @@ namespace VBTranspiler.CodeGenerator
       //Build the list of imports
       List<ImportsStatementSyntax> imports = new List<ImportsStatementSyntax>();
       imports.Add(CreateImportStatement("System"));
-
-      if (mType == SourceType.Form
-         || mType == SourceType.UserControl)
-        imports.Add(CreateImportStatement("System.Windows.Forms"));
-
+      
+      AddAdditionalImports(imports);
       imports.Add(CreateImportStatement("Microsoft.VisualBasic"));
- 
+
       //Build the main compilation unit now that all the members have been processed.
       CompilationUnitSyntax cu = SyntaxFactory.CompilationUnit()
                                  .AddImports(imports.ToArray())
-                                 .AddMembers(CreateTopLevelTypeDeclaration())
+                                 .AddMembers(CreateTopLevelTypeDeclaration(mMainDeclMembers))
                                  .NormalizeWhitespace();
 
       return cu.ToFullString();
@@ -89,13 +69,9 @@ namespace VBTranspiler.CodeGenerator
     /// Creates the top level class or module declaration.
     /// </summary>
     /// <returns>The type declaration.</returns>
-    TypeBlockSyntax CreateTopLevelTypeDeclaration()
-    {
-      if (mType == SourceType.Module)
-        return CreateModuleDeclaration();
-      else
-        return CreateClassDeclaration();
-    }
+    protected abstract TypeBlockSyntax CreateTopLevelTypeDeclaration(IEnumerable<StatementSyntax> members);
+
+    protected abstract void AddAdditionalImports(List<ImportsStatementSyntax> imports);
 
     /// <summary>
     /// Creates a module declaration.
@@ -105,37 +81,7 @@ namespace VBTranspiler.CodeGenerator
     {
       SyntaxTokenList publicModifier = RoslynUtils.PublicModifier;
       return SyntaxFactory.ModuleBlock(SyntaxFactory.ModuleStatement(GetVBNameAttributeValue()).WithModifiers(publicModifier))
-             .WithMembers(SyntaxFactory.List(mClassMembers));
-    }
-
-    /// <summary>
-    /// Creates a class declaration.
-    /// </summary>
-    /// <returns>The class declaration AST node.</returns>
-    ClassBlockSyntax CreateClassDeclaration()
-    {
-      SyntaxTokenList publicModifier = RoslynUtils.PublicModifier;
-      ClassBlockSyntax classDecl = SyntaxFactory.ClassBlock(SyntaxFactory.ClassStatement(GetVBNameAttributeValue()).WithModifiers(publicModifier))
-                                   .WithMembers(SyntaxFactory.List(mClassMembers));
-
-      TypeSyntax inheritsType = null;
-
-      if (mType == SourceType.Form)
-        inheritsType = SyntaxFactory.ParseTypeName("Form");
-      else if (mType == SourceType.UserControl)
-        inheritsType = SyntaxFactory.ParseTypeName("UserControl");
-
-      if(inheritsType != null)
-      {
-        TypeSyntax[] typeArr = new TypeSyntax[] { inheritsType };
-        InheritsStatementSyntax[] inheritArr = new InheritsStatementSyntax[] { SyntaxFactory.InheritsStatement(typeArr) };
-        SyntaxList<InheritsStatementSyntax> inherits = SyntaxFactory.List(inheritArr);
-
-        classDecl = classDecl.WithInherits(inherits);
-      }
-
-      return classDecl;
-      
+             .WithMembers(SyntaxFactory.List(mMainDeclMembers));
     }
 
     /// <summary>
@@ -143,7 +89,7 @@ namespace VBTranspiler.CodeGenerator
     /// </summary>
     /// <param name="namespaceName">Namespace to import</param>
     /// <returns>The new import statement AST node</returns>
-    private ImportsStatementSyntax CreateImportStatement(string namespaceName)
+    protected ImportsStatementSyntax CreateImportStatement(string namespaceName)
     {
       var importsClause = SyntaxFactory.SimpleImportsClause(SyntaxFactory.ParseName(namespaceName));
       return SyntaxFactory.ImportsStatement(SyntaxFactory.SeparatedList<ImportsClauseSyntax>(new ImportsClauseSyntax[] { importsClause }));
@@ -153,7 +99,7 @@ namespace VBTranspiler.CodeGenerator
     /// Gets the name of the VB6 class/module
     /// </summary>
     /// <returns></returns>
-    private string GetVBNameAttributeValue()
+    protected string GetVBNameAttributeValue()
     {
       foreach (VisualBasic6Parser.AttributeStmtContext attr in mParseTree.moduleAttributes().attributeStmt())
       {
@@ -169,7 +115,7 @@ namespace VBTranspiler.CodeGenerator
     /// </summary>
     /// <param name="context">Enumeration AST.</param>
     /// <returns></returns>
-    public override RoslynCodeGenerator VisitEnumerationStmt(VisualBasic6Parser.EnumerationStmtContext context)
+    public override CodeGeneratorBase VisitEnumerationStmt(VisualBasic6Parser.EnumerationStmtContext context)
     {
       SyntaxTokenList accessibility = new SyntaxTokenList();
       VisualBasic6Parser.PublicPrivateVisibilityContext vis = context.publicPrivateVisibility();
@@ -202,7 +148,7 @@ namespace VBTranspiler.CodeGenerator
           members.Add(SyntaxFactory.EnumMemberDeclaration(constantName));
       }
 
-      mClassMembers.Add(enumBlock.WithMembers(SyntaxFactory.List<StatementSyntax>(members)));
+      mMainDeclMembers.Add(enumBlock.WithMembers(SyntaxFactory.List<StatementSyntax>(members)));
       return this;
     }
 
@@ -211,7 +157,7 @@ namespace VBTranspiler.CodeGenerator
     /// </summary>
     /// <param name="context">Const decl AST.</param>
     /// <returns></returns>
-    public override RoslynCodeGenerator VisitConstStmt(VisualBasic6Parser.ConstStmtContext context)
+    public override CodeGeneratorBase VisitConstStmt(VisualBasic6Parser.ConstStmtContext context)
     {
       List<SyntaxToken> modifiers= new List<SyntaxToken>();
       VisualBasic6Parser.PublicPrivateGlobalVisibilityContext vis = context.publicPrivateGlobalVisibility();
@@ -259,7 +205,7 @@ namespace VBTranspiler.CodeGenerator
         if(asClause != null)
           varDecl = varDecl.WithAsClause(asClause);
 
-        mClassMembers.Add(SyntaxFactory.FieldDeclaration(varDecl).WithModifiers(SyntaxFactory.TokenList(modifiers)));
+        mMainDeclMembers.Add(SyntaxFactory.FieldDeclaration(varDecl).WithModifiers(SyntaxFactory.TokenList(modifiers)));
       }
 
       return base.VisitConstStmt(context);

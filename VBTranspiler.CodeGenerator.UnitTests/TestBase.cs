@@ -18,7 +18,7 @@ using Microsoft.CodeAnalysis.VisualBasic;
 
 namespace VBTranspiler.CodeGenerator.UnitTests
 {
-  public class TestBase
+  public abstract class TestBase
   {
     protected VisualBasic6Parser.ModuleContext ParseInputSource(string source)
     {
@@ -28,9 +28,11 @@ namespace VBTranspiler.CodeGenerator.UnitTests
       }
     }
 
-    protected void VerifyGeneratedCode(string inputCode, string expectedCode, RoslynCodeGenerator.SourceType type)
+    protected abstract CodeGeneratorBase CreateCodeGenerator(VisualBasic6Parser.ModuleContext parseTree);
+
+    protected void VerifyGeneratedCode(string inputCode, string expectedCode)
     {
-      var codeGen = new RoslynCodeGenerator(ParseInputSource(inputCode), type);
+      var codeGen = CreateCodeGenerator(ParseInputSource(inputCode));
       var generatedCode = codeGen.GenerateCode();
 
       Assert.AreEqual(expectedCode, generatedCode);

@@ -103,9 +103,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="RoslynCodeGenerator.cs" />
+    <Compile Include="ClassModuleCodeGenerator.cs" />
+    <Compile Include="CodeGeneratorBase.cs" />
+    <Compile Include="FormUserControlCodeGenerator.cs" />
+    <Compile Include="ModuleCodeGenerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RoslynHelpers.cs" />
+    <Compile Include="RoslynUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

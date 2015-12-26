@@ -22,7 +22,7 @@ namespace VBTranspiler
       var outputFile = @"Test.vb";
 
       var parseTree = VisualBasic6Parser.ParseSource(inputFile);
-      var codeGen = new RoslynCodeGenerator(parseTree, RoslynCodeGenerator.SourceType.Class);
+      var codeGen = new ClassModuleCodeGenerator(parseTree);
 
       using(StreamWriter output = new StreamWriter(outputFile))
       {

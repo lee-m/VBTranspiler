@@ -115,16 +115,19 @@
     </When>
     <Otherwise>
       <ItemGroup>
-        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework">
+          <Private>False</Private>
+        </Reference>
       </ItemGroup>
     </Otherwise>
   </Choose>
   <ItemGroup>
     <Compile Include="TestBase.cs" />
-    <Compile Include="TestCodeGenerationClassModule.cs" />
+    <Compile Include="TestClassModuleCodeGenerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestCodeGenerationEnum.cs" />
-    <Compile Include="TestCodeGenerationFieldDecls.cs" />
+    <Compile Include="TestUserControlCodeGenerator.cs" />
+    <Compile Include="TestFormCodeGenerator.cs" />
+    <Compile Include="TestModuleCodeGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\VBTranspiler.CodeGenerator\VBTranspiler.CodeGenerator.csproj">
