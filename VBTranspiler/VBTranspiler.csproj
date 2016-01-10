@@ -63,7 +63,7 @@
       <Project>{be1cfbb7-5122-481d-8167-125f509a0026}</Project>
       <Name>VBTranspiler.CodeGenerator</Name>
     </ProjectReference>
-    <ProjectReference Include="..\VBTranspiler.Transpiler\VBTranspiler.Parser.csproj">
+    <ProjectReference Include="..\VBTranspiler.Parser\VBTranspiler.Parser.csproj">
       <Project>{0ed27b86-7a52-4557-9a7a-3d7c1f735797}</Project>
       <Name>VBTranspiler.Parser</Name>
     </ProjectReference>

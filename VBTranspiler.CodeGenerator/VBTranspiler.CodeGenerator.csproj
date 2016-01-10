@@ -114,7 +114,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\VBTranspiler.Transpiler\VBTranspiler.Parser.csproj">
+    <ProjectReference Include="..\VBTranspiler.Parser\VBTranspiler.Parser.csproj">
       <Project>{0ed27b86-7a52-4557-9a7a-3d7c1f735797}</Project>
       <Name>VBTranspiler.Parser</Name>
     </ProjectReference>

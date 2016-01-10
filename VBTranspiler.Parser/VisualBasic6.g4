@@ -44,6 +44,12 @@
 *
 * Change log:
 *
+* v1.4
+*   - tighten allowed visibilities for enumerators and constant decls
+*   - add support for parsing the contents of FRM files, in particular:
+*		- parsing of referenced components
+*		- parsing of the forms control tree and those controls' properties.
+*
 * v1.3
 *	- call statement precedence
 *
@@ -61,7 +67,7 @@ grammar VisualBasic6;
 
 options
 {
-	language = CSharp;
+	language = Java;
 }
 
 
@@ -72,6 +78,8 @@ startRule : module EOF;
 module : 
 	WS? NEWLINE*
 	(moduleHeader NEWLINE+)?
+	moduleReferences? NEWLINE*
+	moduleControls? NEWLINE*
 	moduleConfig? NEWLINE*
 	moduleAttributes? NEWLINE*
 	moduleOptions? NEWLINE*
@@ -79,7 +87,37 @@ module :
 	WS?
 ;
 
-moduleHeader : VERSION WS DOUBLELITERAL WS CLASS;
+moduleReferences:
+	moduleReference*;
+	
+moduleReference :
+	OBJECT WS? EQ WS? moduleReferenceGUID SEMI_COLON WS? moduleReferenceComponent NEWLINE*;
+	 
+moduleReferenceGUID :
+	STRINGLITERAL;
+
+moduleReferenceComponent :
+	STRINGLITERAL;
+
+moduleControls :
+	WS? BEGIN WS controlType WS controlIdentifier WS? NEWLINE+
+	moduleControlProperty+
+	END NEWLINE*;
+
+moduleControlProperty :
+	WS? ambiguousIdentifier WS? EQ WS? literal frxOffset? NEWLINE
+	| moduleControls+;
+
+frxOffset :
+	COLON literal;
+
+controlType :
+	complexType;
+
+controlIdentifier :
+	ambiguousIdentifier;
+
+moduleHeader : VERSION WS DOUBLELITERAL (WS CLASS)?;
 
 moduleConfig :
 	BEGIN NEWLINE+ 
@@ -772,6 +810,7 @@ NEW : N E W;
 NOT : N O T;
 NOTHING : N O T H I N G;
 NULL : N U L L;
+OBJECT : O B J E C T;
 ON : O N;
 ON_ERROR : O N ' ' E R R O R;
 OPEN : O P E N;
@@ -860,6 +899,8 @@ POW : '^';
 RPAREN : ')';
 L_SQUARE_BRACKET : '[';
 R_SQUARE_BRACKET : ']';
+SEMI_COLON : ';';
+COLON : ':';
 
 
 // literals

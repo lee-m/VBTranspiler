@@ -37,7 +37,5 @@ End Class
 
       VerifyGeneratedCode(inputCode, expectedCode);
     }
-
-   
   }
 }

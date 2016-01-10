@@ -18,7 +18,7 @@ namespace VBTranspiler
   {
     static void Main(string[] args)
     {
-      var inputFile = @"Test.cls";
+      var inputFile = @"Test2.frm";
       var outputFile = @"Test.vb";
 
       var parseTree = VisualBasic6Parser.ParseSource(inputFile);
