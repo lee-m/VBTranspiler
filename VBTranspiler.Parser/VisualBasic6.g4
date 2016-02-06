@@ -46,7 +46,7 @@
 *
 * v1.4
 *   - tighten allowed visibilities for enumerators and constant decls
-*   - add support for parsing the contents of FRM files, in particular:
+*   - add support for parsing the contents of FRM/CTL files, in particular:
 *		- parsing of referenced components
 *		- parsing of the forms control tree and those controls' properties.
 *
@@ -79,7 +79,7 @@ module :
 	WS? NEWLINE*
 	(moduleHeader NEWLINE+)?
 	moduleReferences? NEWLINE*
-	moduleControls? NEWLINE*
+	controlProperties? NEWLINE*
 	moduleConfig? NEWLINE*
 	moduleAttributes? NEWLINE*
 	moduleOptions? NEWLINE*
@@ -98,24 +98,6 @@ moduleReferenceGUID :
 
 moduleReferenceComponent :
 	STRINGLITERAL;
-
-moduleControls :
-	WS? BEGIN WS controlType WS controlIdentifier WS? NEWLINE+
-	moduleControlProperty+
-	END NEWLINE*;
-
-moduleControlProperty :
-	WS? ambiguousIdentifier WS? EQ WS? literal frxOffset? NEWLINE
-	| moduleControls+;
-
-frxOffset :
-	COLON literal;
-
-controlType :
-	complexType;
-
-controlIdentifier :
-	ambiguousIdentifier;
 
 moduleHeader : VERSION WS DOUBLELITERAL (WS CLASS)?;
 
@@ -158,6 +140,34 @@ moduleBodyElement :
 	| typeStmt
 ;
 
+// Controls ----------------------------------
+
+controlProperties :
+	WS? BEGIN WS cp_ControlType WS cp_ControlIdentifier WS? NEWLINE+
+	cp_Properties+
+	END NEWLINE*;
+
+cp_Properties :
+	cp_SingleProperty
+	| cp_NestedProperty
+	| controlProperties;
+
+cp_SingleProperty :
+	WS? ambiguousIdentifier WS? EQ WS? literal cp_FrxOffset? NEWLINE;
+
+cp_NestedProperty :
+	WS? BEGINPROPERTY WS ambiguousIdentifier (LPAREN INTEGERLITERAL RPAREN)? WS GUID NEWLINE+
+	cp_Properties+
+	ENDPROPERTY NEWLINE+;
+	
+cp_FrxOffset :
+	COLON literal;
+
+cp_ControlType :
+	complexType;
+
+cp_ControlIdentifier :
+	ambiguousIdentifier;
 
 // block ----------------------------------
 
@@ -712,6 +722,7 @@ APPACTIVATE : A P P A C T I V A T E;
 APPEND : A P P E N D;
 AS : A S;
 BEGIN : B E G I N;
+BEGINPROPERTY: B E G I N P R O P E R T Y;
 BEEP : B E E P;
 BINARY : B I N A R Y;
 BOOLEAN : B O O L E A N;
@@ -756,6 +767,7 @@ END_SUB : E N D ' ' S U B;
 END_TYPE : E N D ' ' T Y P E;
 END_WITH : E N D ' ' W I T H;
 END : E N D;
+ENDPROPERTY: E N D P R O P E R T Y;
 ENUM : E N U M;
 EQV : E Q V;
 ERASE : E R A S E;
@@ -887,6 +899,7 @@ EQ : '=';
 GEQ : '>=';
 GT : '>';
 LEQ : '<=';
+LBRACE : '{';
 LPAREN : '(';
 LT : '<';
 MINUS : '-';
@@ -896,6 +909,7 @@ NEQ : '<>';
 PLUS : '+';
 PLUS_EQ : '+=';
 POW : '^';
+RBRACE : '}';
 RPAREN : ')';
 L_SQUARE_BRACKET : '[';
 R_SQUARE_BRACKET : ']';
@@ -910,6 +924,11 @@ COLORLITERAL : '&H' [0-9A-F]+ '&'?;
 INTEGERLITERAL : (PLUS|MINUS)? ('0'..'9')+ ( ('e' | 'E') INTEGERLITERAL)* ('#' | '&')?;
 DOUBLELITERAL : (PLUS|MINUS)? ('0'..'9')* '.' ('0'..'9')+ ( ('e' | 'E') (PLUS|MINUS)? ('0'..'9')+)* ('#' | '&')?;
 FILENUMBER : '#' LETTERORDIGIT+;
+
+
+// guid
+GUID : LBRACE GUID_WORD MINUS GUID_WORD MINUS GUID_WORD MINUS GUID_WORD MINUS GUID_WORD RBRACE;
+GUID_WORD : [0-9A-F]+;
 
 
 // identifier

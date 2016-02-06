@@ -86,27 +86,27 @@ End
 ";
 
       var parseTree = ParseInputSource(inputSource);
-      var moduleControls = parseTree.moduleControls();
+      var moduleControls = parseTree.controlProperties();
 
       Assert.IsNotNull(moduleControls);
-      Assert.AreEqual("VB.Form", moduleControls.controlType().GetText());
-      Assert.AreEqual("SomeForm", moduleControls.controlIdentifier().GetText());
+      Assert.AreEqual("VB.Form", moduleControls.cp_ControlType().GetText());
+      Assert.AreEqual("SomeForm", moduleControls.cp_ControlIdentifier().GetText());
 
-      var controlProperties = parseTree.moduleControls().moduleControlProperty();
+      var controlProperties = parseTree.controlProperties().cp_Properties();
       Assert.IsNotNull(controlProperties);
       Assert.AreEqual(4, controlProperties.Length);
 
-      Assert.AreEqual("BorderStyle", controlProperties[0].ambiguousIdentifier().GetText());
-      Assert.AreEqual("3", controlProperties[0].literal().GetText());
+      Assert.AreEqual("BorderStyle", controlProperties[0].cp_SingleProperty().ambiguousIdentifier().GetText());
+      Assert.AreEqual("3", controlProperties[0].cp_SingleProperty().literal().GetText());
 
-      Assert.AreEqual("Caption", controlProperties[1].ambiguousIdentifier().GetText());
-      Assert.AreEqual(@"""Some Form""", controlProperties[1].literal().GetText());
+      Assert.AreEqual("Caption", controlProperties[1].cp_SingleProperty().ambiguousIdentifier().GetText());
+      Assert.AreEqual(@"""Some Form""", controlProperties[1].cp_SingleProperty().literal().GetText());
 
-      Assert.AreEqual("ClientHeight", controlProperties[2].ambiguousIdentifier().GetText());
-      Assert.AreEqual("7950", controlProperties[2].literal().GetText());
+      Assert.AreEqual("ClientHeight", controlProperties[2].cp_SingleProperty().ambiguousIdentifier().GetText());
+      Assert.AreEqual("7950", controlProperties[2].cp_SingleProperty().literal().GetText());
 
-      Assert.AreEqual("MaxButton", controlProperties[3].ambiguousIdentifier().GetText());
-      Assert.AreEqual("0", controlProperties[3].literal().GetText());
+      Assert.AreEqual("MaxButton", controlProperties[3].cp_SingleProperty().ambiguousIdentifier().GetText());
+      Assert.AreEqual("0", controlProperties[3].cp_SingleProperty().literal().GetText());
     }
 
     [TestMethod()]
@@ -136,50 +136,84 @@ Begin VB.Form SomeForm
          TabIndex        =   3
          Top             =   780
          Width           =   330
+         _Version        =   21563
       End
   End
 End
 ";
 
       var parseTree = ParseInputSource(inputSource);
-      var moduleControls = parseTree.moduleControls();
+      var moduleControls = parseTree.controlProperties();
 
-      Assert.AreEqual("VB.Form", moduleControls.controlType().GetText());
-      Assert.AreEqual("SomeForm", moduleControls.controlIdentifier().GetText());
+      Assert.AreEqual("VB.Form", moduleControls.cp_ControlType().GetText());
+      Assert.AreEqual("SomeForm", moduleControls.cp_ControlIdentifier().GetText());
 
-      var controlProperties = parseTree.moduleControls().moduleControlProperty();
+      var controlProperties = parseTree.controlProperties().cp_Properties();
       Assert.AreEqual(5, controlProperties.Length);
 
-      Assert.AreEqual("BorderStyle", controlProperties[0].ambiguousIdentifier().GetText());
-      Assert.AreEqual("3", controlProperties[0].literal().GetText());
+      Assert.AreEqual("BorderStyle", controlProperties[0].cp_SingleProperty().ambiguousIdentifier().GetText());
+      Assert.AreEqual("3", controlProperties[0].cp_SingleProperty().literal().GetText());
 
-      Assert.AreEqual("Caption", controlProperties[1].ambiguousIdentifier().GetText());
-      Assert.AreEqual(@"""Some Form""", controlProperties[1].literal().GetText());
+      Assert.AreEqual("Caption", controlProperties[1].cp_SingleProperty().ambiguousIdentifier().GetText());
+      Assert.AreEqual(@"""Some Form""", controlProperties[1].cp_SingleProperty().literal().GetText());
 
-      Assert.AreEqual("ClientHeight", controlProperties[2].ambiguousIdentifier().GetText());
-      Assert.AreEqual("7950", controlProperties[2].literal().GetText());
+      Assert.AreEqual("ClientHeight", controlProperties[2].cp_SingleProperty().ambiguousIdentifier().GetText());
+      Assert.AreEqual("7950", controlProperties[2].cp_SingleProperty().literal().GetText());
 
-      Assert.AreEqual("MaxButton", controlProperties[3].ambiguousIdentifier().GetText());
-      Assert.AreEqual("0", controlProperties[3].literal().GetText());
+      Assert.AreEqual("MaxButton", controlProperties[3].cp_SingleProperty().ambiguousIdentifier().GetText());
+      Assert.AreEqual("0", controlProperties[3].cp_SingleProperty().literal().GetText());
 
       //Frame nested control block
-      var frameControlBlock = controlProperties[4].moduleControls();
+      var frameControlBlock = controlProperties[4].controlProperties();
 
-      Assert.AreEqual(1, frameControlBlock.Length);
-      Assert.AreEqual(7, frameControlBlock[0].moduleControlProperty().Length);
-      Assert.AreEqual("VB.Frame", frameControlBlock[0].controlType().GetText());
-      Assert.AreEqual("SomeFrame", frameControlBlock[0].controlIdentifier().GetText());
+      Assert.AreEqual(7, frameControlBlock.cp_Properties().Length);
+      Assert.AreEqual("VB.Frame", frameControlBlock.cp_ControlType().GetText());
+      Assert.AreEqual("SomeFrame", frameControlBlock.cp_ControlIdentifier().GetText());
 
       //Button nested control block
-      var buttonControlBlock = frameControlBlock[0].moduleControlProperty().Last().moduleControls();
+      var buttonControlBlock = frameControlBlock.cp_Properties().Last().controlProperties();
 
-      Assert.AreEqual(1, buttonControlBlock.Length);
-      Assert.AreEqual(7, buttonControlBlock[0].moduleControlProperty().Length);
-      Assert.AreEqual("VB.CommandButton", buttonControlBlock[0].controlType().GetText());
-      Assert.AreEqual("SomeButton", buttonControlBlock[0].controlIdentifier().GetText());
-      
-      var frxOffset = buttonControlBlock[0].moduleControlProperty()[1].frxOffset();
+      Assert.AreEqual(8, buttonControlBlock.cp_Properties().Length);
+      Assert.AreEqual("VB.CommandButton", buttonControlBlock.cp_ControlType().GetText());
+      Assert.AreEqual("SomeButton", buttonControlBlock.cp_ControlIdentifier().GetText());
+
+      var frxOffset = buttonControlBlock.cp_Properties()[1].cp_SingleProperty().cp_FrxOffset();
       Assert.AreEqual("0000", frxOffset.literal().GetText()); 
+    }
+
+    [TestMethod()]
+    public void TestParsingBeginPropertyBlock()
+    {
+      string inputSource = @"
+VERSION 5.00
+Object = ""{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0""; ""Comdlg32.ocx""
+Object = ""{3B7C8863-D78F-101B-B9B5-04021C009402}#1.2#0""; ""RICHTX32.OCX""
+Begin VB.Form SomeForm
+  BorderStyle     =   3  'Fixed Dialog
+  Begin VB.Frame SomeFrame
+      Caption         =   ""Frame""
+      BeginProperty ColumnHeader(1) {BDD1F052-858B-11D1-B16A-00C0F0283628}
+          Text        =   ""Description""
+          Height      =   315
+          Left        =   9600
+          TabInd      =   3
+          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+              Name            =   ""Courier New""
+              Size            =   9
+              Charset         =   0
+              Weight          =   400
+              Underline       =   0   'False
+              Italic          =   0   'False
+              Strikethrough   =   0   'False
+          EndProperty
+      EndProperty
+      Top             =   120
+      Width           =   10755
+  End
+End
+";
+      var parseTree = ParseInputSource(inputSource);
+      var moduleControls = parseTree.controlProperties();
     }
   }
 }
