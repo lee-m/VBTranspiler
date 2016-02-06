@@ -137,6 +137,8 @@ Begin VB.Form SomeForm
          Top             =   780
          Width           =   330
          _Version        =   21563
+         TextRTF         =   $""frmJobDetails.frx"":0043
+         RightMargin     =   1.31072e5
       End
   End
 End
@@ -173,7 +175,7 @@ End
       //Button nested control block
       var buttonControlBlock = frameControlBlock.cp_Properties().Last().controlProperties();
 
-      Assert.AreEqual(8, buttonControlBlock.cp_Properties().Length);
+      Assert.AreEqual(10, buttonControlBlock.cp_Properties().Length);
       Assert.AreEqual("VB.CommandButton", buttonControlBlock.cp_ControlType().GetText());
       Assert.AreEqual("SomeButton", buttonControlBlock.cp_ControlIdentifier().GetText());
 

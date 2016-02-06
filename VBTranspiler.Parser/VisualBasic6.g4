@@ -153,7 +153,7 @@ cp_Properties :
 	| controlProperties;
 
 cp_SingleProperty :
-	WS? ambiguousIdentifier WS? EQ WS? literal cp_FrxOffset? NEWLINE;
+	WS? ambiguousIdentifier WS? EQ WS? '$'? literal cp_FrxOffset? NEWLINE;
 
 cp_NestedProperty :
 	WS? BEGINPROPERTY WS ambiguousIdentifier (LPAREN INTEGERLITERAL RPAREN)? WS GUID NEWLINE+
