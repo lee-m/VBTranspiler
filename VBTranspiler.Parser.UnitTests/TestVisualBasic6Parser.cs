@@ -216,6 +216,22 @@ End
 ";
       var parseTree = ParseInputSource(inputSource);
       var moduleControls = parseTree.controlProperties();
+      Assert.AreEqual(2, moduleControls.cp_Properties().Length);
+
+      var frameProp = moduleControls.cp_Properties()[1];
+      Assert.AreEqual("SomeFrame", frameProp.controlProperties().cp_ControlIdentifier().GetText());
+
+      var firstNestedProp = frameProp.controlProperties().cp_Properties()[1];
+
+      Assert.AreEqual("ColumnHeader", firstNestedProp.cp_NestedProperty().ambiguousIdentifier().GetText());
+      Assert.IsNotNull(firstNestedProp.cp_NestedProperty());
+      Assert.AreEqual(5, firstNestedProp.cp_NestedProperty().cp_Properties().Length);
+
+      var secondNestedProp = firstNestedProp.cp_NestedProperty().cp_Properties()[4];
+
+      Assert.AreEqual("Font", secondNestedProp.cp_NestedProperty().ambiguousIdentifier().GetText());
+      Assert.IsNotNull(secondNestedProp.cp_NestedProperty());
+      Assert.AreEqual(7, secondNestedProp.cp_NestedProperty().cp_Properties().Length);
     }
   }
 }
