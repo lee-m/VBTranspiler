@@ -29,7 +29,7 @@ namespace VBTranspiler.CodeGenerator
       SyntaxList<InheritsStatementSyntax> inherits = SyntaxFactory.List(inheritArr);
 
       classDecl = classDecl.WithInherits(inherits);
-
+      
       return classDecl;
     }
 

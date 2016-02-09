@@ -105,6 +105,9 @@
   <ItemGroup>
     <Compile Include="ClassModuleCodeGenerator.cs" />
     <Compile Include="CodeGeneratorBase.cs" />
+    <Compile Include="Controls\ControlPropertyBase.cs" />
+    <Compile Include="Controls\ControlTree.cs" />
+    <Compile Include="Controls\ControlTreeNode.cs" />
     <Compile Include="FormUserControlCodeGenerator.cs" />
     <Compile Include="ModuleCodeGenerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
