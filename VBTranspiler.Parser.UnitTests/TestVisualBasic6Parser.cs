@@ -96,16 +96,16 @@ End
       Assert.IsNotNull(controlProperties);
       Assert.AreEqual(4, controlProperties.Length);
 
-      Assert.AreEqual("BorderStyle", controlProperties[0].cp_SingleProperty().ambiguousIdentifier().GetText());
+      Assert.AreEqual("BorderStyle", controlProperties[0].cp_SingleProperty().cp_PropertyName().GetText());
       Assert.AreEqual("3", controlProperties[0].cp_SingleProperty().literal().GetText());
 
-      Assert.AreEqual("Caption", controlProperties[1].cp_SingleProperty().ambiguousIdentifier().GetText());
+      Assert.AreEqual("Caption", controlProperties[1].cp_SingleProperty().cp_PropertyName().GetText());
       Assert.AreEqual(@"""Some Form""", controlProperties[1].cp_SingleProperty().literal().GetText());
 
-      Assert.AreEqual("ClientHeight", controlProperties[2].cp_SingleProperty().ambiguousIdentifier().GetText());
+      Assert.AreEqual("ClientHeight", controlProperties[2].cp_SingleProperty().cp_PropertyName().GetText());
       Assert.AreEqual("7950", controlProperties[2].cp_SingleProperty().literal().GetText());
 
-      Assert.AreEqual("MaxButton", controlProperties[3].cp_SingleProperty().ambiguousIdentifier().GetText());
+      Assert.AreEqual("MaxButton", controlProperties[3].cp_SingleProperty().cp_PropertyName().GetText());
       Assert.AreEqual("0", controlProperties[3].cp_SingleProperty().literal().GetText());
     }
 
@@ -137,7 +137,7 @@ Begin VB.Form SomeForm
          Top             =   780
          Width           =   330
          _Version        =   21563
-         TextRTF         =   $""frmJobDetails.frx"":0043
+         TextRTF         =   $""frmJobDetails.frx"":008A
          RightMargin     =   1.31072e5
       End
   End
@@ -153,16 +153,16 @@ End
       var controlProperties = parseTree.controlProperties().cp_Properties();
       Assert.AreEqual(5, controlProperties.Length);
 
-      Assert.AreEqual("BorderStyle", controlProperties[0].cp_SingleProperty().ambiguousIdentifier().GetText());
+      Assert.AreEqual("BorderStyle", controlProperties[0].cp_SingleProperty().cp_PropertyName().GetText());
       Assert.AreEqual("3", controlProperties[0].cp_SingleProperty().literal().GetText());
 
-      Assert.AreEqual("Caption", controlProperties[1].cp_SingleProperty().ambiguousIdentifier().GetText());
+      Assert.AreEqual("Caption", controlProperties[1].cp_SingleProperty().cp_PropertyName().GetText());
       Assert.AreEqual(@"""Some Form""", controlProperties[1].cp_SingleProperty().literal().GetText());
 
-      Assert.AreEqual("ClientHeight", controlProperties[2].cp_SingleProperty().ambiguousIdentifier().GetText());
+      Assert.AreEqual("ClientHeight", controlProperties[2].cp_SingleProperty().cp_PropertyName().GetText());
       Assert.AreEqual("7950", controlProperties[2].cp_SingleProperty().literal().GetText());
 
-      Assert.AreEqual("MaxButton", controlProperties[3].cp_SingleProperty().ambiguousIdentifier().GetText());
+      Assert.AreEqual("MaxButton", controlProperties[3].cp_SingleProperty().cp_PropertyName().GetText());
       Assert.AreEqual("0", controlProperties[3].cp_SingleProperty().literal().GetText());
 
       //Frame nested control block
@@ -180,7 +180,10 @@ End
       Assert.AreEqual("SomeButton", buttonControlBlock.cp_ControlIdentifier().GetText());
 
       var frxOffset = buttonControlBlock.cp_Properties()[1].cp_SingleProperty().cp_FrxOffset();
-      Assert.AreEqual("0000", frxOffset.literal().GetText()); 
+      Assert.AreEqual(":0000", frxOffset.GetText());
+
+      var secondFrxOffset = buttonControlBlock.cp_Properties()[8].cp_SingleProperty().cp_FrxOffset();
+      Assert.AreEqual(":008A", frxOffset.GetText());
     }
 
     [TestMethod()]
@@ -208,6 +211,15 @@ Begin VB.Form SomeForm
               Italic          =   0   'False
               Strikethrough   =   0   'False
           EndProperty
+          BeginProperty SomeNestedProp 
+              Name            =   ""Tahoma""
+              Size            =   8.25
+              Charset         =   0
+              Weight          =   400
+              Underline       =   0   'False
+              Italic          =   0   'False
+              Object.Strikethrough   =   0   'False
+          EndProperty
       EndProperty
       Top             =   120
       Width           =   10755
@@ -225,13 +237,45 @@ End
 
       Assert.AreEqual("ColumnHeader", firstNestedProp.cp_NestedProperty().ambiguousIdentifier().GetText());
       Assert.IsNotNull(firstNestedProp.cp_NestedProperty());
-      Assert.AreEqual(5, firstNestedProp.cp_NestedProperty().cp_Properties().Length);
+      Assert.AreEqual(6, firstNestedProp.cp_NestedProperty().cp_Properties().Length);
 
       var secondNestedProp = firstNestedProp.cp_NestedProperty().cp_Properties()[4];
 
       Assert.AreEqual("Font", secondNestedProp.cp_NestedProperty().ambiguousIdentifier().GetText());
       Assert.IsNotNull(secondNestedProp.cp_NestedProperty());
       Assert.AreEqual(7, secondNestedProp.cp_NestedProperty().cp_Properties().Length);
+    }
+
+    [TestMethod()]
+    public void TestParsingPropertyReturningObject()
+    {
+      string inputSource = @"
+Private Property Get iLibraryNode_PopupMenu() As Object
+Dim obValues as clsValues
+End Property";
+
+      //Previous versions of the grammer couldn't handle Object as a type so simply check for no parse errors.
+      ParseInputSource(inputSource);
+    }
+
+    [TestMethod()]
+    public void TestParsingWhileLoopWithBlankLinesAtBodyEnd()
+    {
+      string inputSource = @"
+Private Sub Test()
+
+  Dim obValues As Object
+  
+  While True
+    
+      obValues = Nothing
+	  
+  Wend
+  
+End Sub
+";
+      //Used to fail with a parse error.
+      ParseInputSource(inputSource);
     }
   }
 }

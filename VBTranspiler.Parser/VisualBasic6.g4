@@ -49,6 +49,7 @@
 *   - add support for parsing the contents of FRM/CTL files, in particular:
 *		- parsing of referenced components
 *		- parsing of the forms control tree and those controls' properties.
+*   - added missing "Object" type to list of base types.
 *
 * v1.3
 *	- call statement precedence
@@ -153,10 +154,13 @@ cp_Properties :
 	| controlProperties;
 
 cp_SingleProperty :
-	WS? ambiguousIdentifier WS? EQ WS? '$'? literal cp_FrxOffset? NEWLINE;
+	WS? cp_PropertyName WS? EQ WS? '$'? literal cp_FrxOffset? NEWLINE;
+
+cp_PropertyName :
+	(OBJECT '.')? ambiguousIdentifier;
 
 cp_NestedProperty :
-	WS? BEGINPROPERTY WS ambiguousIdentifier (LPAREN INTEGERLITERAL RPAREN)? WS GUID NEWLINE+
+	WS? BEGINPROPERTY WS ambiguousIdentifier (LPAREN INTEGERLITERAL RPAREN)? (WS GUID)? NEWLINE+
 	cp_Properties+
 	ENDPROPERTY NEWLINE+;
 	
@@ -563,7 +567,7 @@ variableSubStmt : ambiguousIdentifier (WS? LPAREN WS? (subscripts WS?)? RPAREN W
 
 whileWendStmt : 
 	WHILE WS valueStmt NEWLINE+ 
-	(block NEWLINE)* 
+	block* NEWLINE* 
 	WEND
 ;
 
@@ -655,7 +659,7 @@ ambiguousIdentifier :
 
 asTypeClause : AS WS (NEW WS)? type (WS fieldLength)?;
 
-baseType : BOOLEAN | BYTE | COLLECTION | DATE | DOUBLE | INTEGER | LONG | SINGLE | STRING | VARIANT;
+baseType : BOOLEAN | BYTE | COLLECTION | DATE | DOUBLE | INTEGER | LONG | | OBJECT | SINGLE | STRING | VARIANT;
 
 certainIdentifier : 
 	IDENTIFIER (ambiguousKeyword | IDENTIFIER)*
