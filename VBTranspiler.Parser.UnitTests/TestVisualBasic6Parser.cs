@@ -130,14 +130,14 @@ Begin VB.Form SomeForm
       Width           =   10755
       Begin VB.CommandButton SomeButton
          Caption         =   ""Button""
-         ItemData        =   ""frmJobDetails.frx"":0000
+         ItemData        =   ""SomeForm.frx"":0000
          Height          =   315
          Left            =   9600
          TabIndex        =   3
          Top             =   780
          Width           =   330
          _Version        =   21563
-         TextRTF         =   $""frmJobDetails.frx"":008A
+         TextRTF         =   $""SomeForm.frx"":008A
          RightMargin     =   1.31072e5
       End
   End
@@ -179,11 +179,11 @@ End
       Assert.AreEqual("VB.CommandButton", buttonControlBlock.cp_ControlType().GetText());
       Assert.AreEqual("SomeButton", buttonControlBlock.cp_ControlIdentifier().GetText());
 
-      var frxOffset = buttonControlBlock.cp_Properties()[1].cp_SingleProperty().cp_FrxOffset();
+      var frxOffset = buttonControlBlock.cp_Properties()[1].cp_SingleProperty().FRX_OFFSET();
       Assert.AreEqual(":0000", frxOffset.GetText());
 
-      var secondFrxOffset = buttonControlBlock.cp_Properties()[8].cp_SingleProperty().cp_FrxOffset();
-      Assert.AreEqual(":008A", frxOffset.GetText());
+      var secondFrxOffset = buttonControlBlock.cp_Properties()[8].cp_SingleProperty().FRX_OFFSET();
+      Assert.AreEqual(":008A", secondFrxOffset.GetText());
     }
 
     [TestMethod()]
@@ -273,6 +273,31 @@ Private Sub Test()
   Wend
   
 End Sub
+";
+      //Used to fail with a parse error.
+      ParseInputSource(inputSource);
+    }
+
+    [TestMethod()]
+    public void TestParsingOptionExplicitAfterMemberVariables()
+    {
+      string inputSource = @"
+VERSION 1.0 CLASS
+BEGIN
+  MultiUse = -1  'True
+  Persistable = 0  'NotPersistable
+  DataBindingBehavior = 0  'vbNone
+  DataSourceBehavior  = 0  'vbNone
+  MTSTransactionMode  = 0  'NotAnMTSObject
+END
+Attribute VB_Name = ""Class1""
+Attribute VB_GlobalNameSpace = False
+Attribute VB_Creatable = True
+Attribute VB_PredeclaredId = False
+Attribute VB_Exposed = False
+Private A As String
+Private B As String
+Private C As String
 ";
       //Used to fail with a parse error.
       ParseInputSource(inputSource);

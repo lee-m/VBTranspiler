@@ -154,7 +154,7 @@ cp_Properties :
 	| controlProperties;
 
 cp_SingleProperty :
-	WS? cp_PropertyName WS? EQ WS? '$'? literal cp_FrxOffset? NEWLINE;
+	WS? cp_PropertyName WS? EQ WS? '$'? literal FRX_OFFSET? NEWLINE+;
 
 cp_PropertyName :
 	(OBJECT '.')? ambiguousIdentifier;
@@ -163,9 +163,6 @@ cp_NestedProperty :
 	WS? BEGINPROPERTY WS ambiguousIdentifier (LPAREN INTEGERLITERAL RPAREN)? (WS GUID)? NEWLINE+
 	cp_Properties+
 	ENDPROPERTY NEWLINE+;
-	
-cp_FrxOffset :
-	COLON literal;
 
 cp_ControlType :
 	complexType;
@@ -930,10 +927,9 @@ DOUBLELITERAL : (PLUS|MINUS)? ('0'..'9')* '.' ('0'..'9')+ ( ('e' | 'E') (PLUS|MI
 FILENUMBER : '#' LETTERORDIGIT+;
 
 
-// guid
-GUID : LBRACE GUID_WORD MINUS GUID_WORD MINUS GUID_WORD MINUS GUID_WORD MINUS GUID_WORD RBRACE;
-GUID_WORD : [0-9A-F]+;
-
+// misc
+FRX_OFFSET : COLON [0-9A-F]+;
+GUID : LBRACE [0-9A-F]+ MINUS [0-9A-F]+ MINUS [0-9A-F]+ MINUS [0-9A-F]+ MINUS [0-9A-F]+ RBRACE;
 
 // identifier
 IDENTIFIER : LETTER LETTERORDIGIT*;
