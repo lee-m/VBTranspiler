@@ -335,5 +335,56 @@ Private B As String
       //Used to fail with a parse error.
       ParseInputSource(inputSource);
     }
+
+    [TestMethod()]
+    public void TestParsingTypeHintsOnArgumentIdentifiers()
+    {
+      string inputSource = @"
+VERSION 1.0 CLASS
+Option Explicit
+
+Public Function Foo(a$, b&, c!, d#, e@, f$()) As Boolean
+End Function
+
+Public Sub Foo(a$, b&, c!, d#, e@)
+End Sub
+
+Public Property Get Bar(a$)
+End Property
+
+Public Property Let Bar(a$)
+End Property
+
+Public Property Set Bar(a$)
+End Property
+
+Event SomeEvent(a$)
+
+Declare Function Func Lib ""Foo.dll"" (a$)
+";
+      //Used to fail with a parse error.
+      ParseInputSource(inputSource);
+    }
+
+    [TestMethod()]
+    public void TestParsingTypeHintsOnNumericLiterals()
+    {
+       string inputSource = @"
+VERSION 1.0 CLASS
+Option Explicit
+
+Public Sub Foo()
+
+  Dim x As Variant
+  x = 123&
+  x = 123!
+  x = 123#
+  x = 123@
+
+End Sub
+";
+      //Used to fail with a parse error.
+      ParseInputSource(inputSource);
+    }
   }
 }
