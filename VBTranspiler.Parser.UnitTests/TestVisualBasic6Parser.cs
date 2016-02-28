@@ -302,5 +302,38 @@ Private C As String
       //Used to fail with a parse error.
       ParseInputSource(inputSource);
     }
+
+    [TestMethod()]
+    public void TestParsingOptionStatementAfterMemberVariableDeclartion()
+    {
+      string inputSource = @"
+VERSION 1.0 CLASS
+Private A As String
+Private B As String
+
+Option Explicit
+
+Private C as String
+
+Option Compare Text
+Option Base 0
+";
+      //Used to fail with a parse error.
+      ParseInputSource(inputSource);
+    }
+
+    [TestMethod()]
+    public void TestParsingMemberVariableDeclartionAfterOptionStatement()
+    {
+      string inputSource = @"
+VERSION 1.0 CLASS
+Option Explicit
+
+Private A As String
+Private B As String
+";
+      //Used to fail with a parse error.
+      ParseInputSource(inputSource);
+    }
   }
 }

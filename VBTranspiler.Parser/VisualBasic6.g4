@@ -129,6 +129,7 @@ moduleBody :
 
 moduleBodyElement : 
 	moduleBlock
+	| moduleOption
 	| declareStmt
 	| enumerationStmt 
 	| eventStmt
