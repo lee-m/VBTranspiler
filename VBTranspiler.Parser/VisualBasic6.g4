@@ -158,7 +158,7 @@ cp_SingleProperty :
 	WS? cp_PropertyName WS? EQ WS? '$'? literal FRX_OFFSET? NEWLINE+;
 
 cp_PropertyName :
-	(OBJECT '.')? ambiguousIdentifier;
+	(OBJECT '.')? complexType;
 
 cp_NestedProperty :
 	WS? BEGINPROPERTY WS ambiguousIdentifier (LPAREN INTEGERLITERAL RPAREN)? (WS GUID)? NEWLINE+
@@ -190,7 +190,7 @@ blockStmt :
 	| dateStmt
 	| deleteSettingStmt
 	| deftypeStmt
-	| doLoopStmt
+	| doLoopStmt_LJM
 	| endStmt
 	| eraseStmt
 	| errorStmt
@@ -281,19 +281,28 @@ deftypeStmt :
 
 deleteSettingStmt : DELETESETTING WS valueStmt WS? ',' WS? valueStmt (WS? ',' WS? valueStmt)?;
 
-doLoopStmt :
+doLoopStmt_LJM :
+	doLoopStmt_1
+	|
+	doLoopStmt_2
+	| 
+	doLoopStmt_3
+;
+
+doLoopStmt_1 :
 	DO NEWLINE+ 
 	(block NEWLINE+)? 
-	LOOP
-	|
+	LOOP;
+
+doLoopStmt_2 :
 	DO WS (WHILE | UNTIL) WS valueStmt NEWLINE+ 
 	(block NEWLINE+)? 
-	LOOP
-	| 
+	LOOP;
+
+doLoopStmt_3 :
 	DO NEWLINE+ 
 	(block NEWLINE+) 
-	LOOP WS (WHILE | UNTIL) WS valueStmt
-;
+	LOOP WS (WHILE | UNTIL) WS valueStmt;
 
 endStmt : END;
 

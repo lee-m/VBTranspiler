@@ -139,6 +139,7 @@ Begin VB.Form SomeForm
          _Version        =   21563
          TextRTF         =   $""SomeForm.frx"":008A
          RightMargin     =   1.31072e5
+         CurCell.BeginLfDblClick=   0   'False
       End
   End
 End
@@ -175,7 +176,7 @@ End
       //Button nested control block
       var buttonControlBlock = frameControlBlock.cp_Properties().Last().controlProperties();
 
-      Assert.AreEqual(10, buttonControlBlock.cp_Properties().Length);
+      Assert.AreEqual(11, buttonControlBlock.cp_Properties().Length);
       Assert.AreEqual("VB.CommandButton", buttonControlBlock.cp_ControlType().GetText());
       Assert.AreEqual("SomeButton", buttonControlBlock.cp_ControlIdentifier().GetText());
 
