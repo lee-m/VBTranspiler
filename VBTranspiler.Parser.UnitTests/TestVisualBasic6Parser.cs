@@ -221,6 +221,8 @@ Begin VB.Form SomeForm
               Italic          =   0   'False
               Object.Strikethrough   =   0   'False
           EndProperty
+          BeginProperty Panels {8E3867A5-8586-11D1-B16A-00C0F0283628} 
+          EndProperty
       EndProperty
       Top             =   120
       Width           =   10755
@@ -238,7 +240,7 @@ End
 
       Assert.AreEqual("ColumnHeader", firstNestedProp.cp_NestedProperty().ambiguousIdentifier().GetText());
       Assert.IsNotNull(firstNestedProp.cp_NestedProperty());
-      Assert.AreEqual(6, firstNestedProp.cp_NestedProperty().cp_Properties().Length);
+      Assert.AreEqual(7, firstNestedProp.cp_NestedProperty().cp_Properties().Length);
 
       var secondNestedProp = firstNestedProp.cp_NestedProperty().cp_Properties()[4];
 

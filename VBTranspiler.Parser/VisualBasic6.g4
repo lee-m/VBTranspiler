@@ -162,7 +162,7 @@ cp_PropertyName :
 
 cp_NestedProperty :
 	WS? BEGINPROPERTY WS ambiguousIdentifier (LPAREN INTEGERLITERAL RPAREN)? (WS GUID)? NEWLINE+
-	cp_Properties+
+	(cp_Properties+)?
 	ENDPROPERTY NEWLINE+;
 
 cp_ControlType :
