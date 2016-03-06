@@ -333,7 +333,7 @@ forEachStmt :
 forNextStmt : 
 	FOR WS ambiguousIdentifier typeHint? (WS asTypeClause)? WS? EQ WS? valueStmt WS TO WS valueStmt (WS STEP WS valueStmt)? NEWLINE+ 
 	(block NEWLINE+)? 
-	NEXT (WS ambiguousIdentifier)?
+	NEXT (WS ambiguousIdentifier typeHint?)?
 ; 
 
 functionStmt :

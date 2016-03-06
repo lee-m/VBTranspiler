@@ -389,5 +389,27 @@ End Sub
       //Used to fail with a parse error.
       ParseInputSource(inputSource);
     }
+
+    [TestMethod()]
+    public void TestParsingTypeHintsOnForLoopIndexVar()
+    {
+      string inputSource = @"
+VERSION 1.0 CLASS
+Option Explicit
+
+Public Sub Foo()
+
+  Dim i%
+  
+  For i% = 1 To 10 Step -1
+    frame.Top = i%
+    DoEvents
+  Next i%
+
+End Sub
+";
+      //Used to fail with a parse error.
+      ParseInputSource(inputSource);
+    }
   }
 }
