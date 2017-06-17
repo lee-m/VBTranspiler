@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>VBTranspiler.Parser</RootNamespace>
     <AssemblyName>VBTranspiler.Parser</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>6a93445e</NuGetPackageImportStamp>
     <TargetFrameworkProfile />
