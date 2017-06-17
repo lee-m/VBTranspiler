@@ -86,6 +86,7 @@ moduleBody
 
 moduleBodyElement
    : moduleBlock
+   | moduleOption
    | declareStmt
    | enumerationStmt
    | eventStmt
@@ -786,7 +787,7 @@ visibility
    | PUBLIC
    | FRIEND
    | GLOBAL
-    ;
+   ;
 
 // ambiguous keywords
 ambiguousKeyword
