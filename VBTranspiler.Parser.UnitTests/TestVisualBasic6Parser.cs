@@ -412,5 +412,21 @@ End Sub
       //Used to fail with a parse error.
       ParseInputSource(inputSource);
     }
+
+    [TestMethod()]
+    public void TestParsingOctalLiteral()
+    {
+      string inputSource = @"
+Sub OctalTest()
+
+Dim foo As Long
+
+	foo = &O55
+	
+End Sub
+";
+      //Used to fail with a parse error.
+      ParseInputSource(inputSource);
+    }
   }
 }
