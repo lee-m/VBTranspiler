@@ -848,6 +848,97 @@ public partial class VisualBasic6BaseListener : IVisualBasic6Listener {
 	public virtual void ExitModuleBodyElement([NotNull] VisualBasic6Parser.ModuleBodyElementContext context) { }
 
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="VisualBasic6Parser.controlProperties"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterControlProperties([NotNull] VisualBasic6Parser.ControlPropertiesContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="VisualBasic6Parser.controlProperties"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitControlProperties([NotNull] VisualBasic6Parser.ControlPropertiesContext context) { }
+
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="VisualBasic6Parser.cp_Properties"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterCp_Properties([NotNull] VisualBasic6Parser.Cp_PropertiesContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="VisualBasic6Parser.cp_Properties"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitCp_Properties([NotNull] VisualBasic6Parser.Cp_PropertiesContext context) { }
+
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="VisualBasic6Parser.cp_SingleProperty"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterCp_SingleProperty([NotNull] VisualBasic6Parser.Cp_SinglePropertyContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="VisualBasic6Parser.cp_SingleProperty"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitCp_SingleProperty([NotNull] VisualBasic6Parser.Cp_SinglePropertyContext context) { }
+
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="VisualBasic6Parser.cp_PropertyName"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterCp_PropertyName([NotNull] VisualBasic6Parser.Cp_PropertyNameContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="VisualBasic6Parser.cp_PropertyName"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitCp_PropertyName([NotNull] VisualBasic6Parser.Cp_PropertyNameContext context) { }
+
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="VisualBasic6Parser.cp_NestedProperty"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterCp_NestedProperty([NotNull] VisualBasic6Parser.Cp_NestedPropertyContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="VisualBasic6Parser.cp_NestedProperty"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitCp_NestedProperty([NotNull] VisualBasic6Parser.Cp_NestedPropertyContext context) { }
+
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="VisualBasic6Parser.cp_ControlType"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterCp_ControlType([NotNull] VisualBasic6Parser.Cp_ControlTypeContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="VisualBasic6Parser.cp_ControlType"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitCp_ControlType([NotNull] VisualBasic6Parser.Cp_ControlTypeContext context) { }
+
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="VisualBasic6Parser.cp_ControlIdentifier"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterCp_ControlIdentifier([NotNull] VisualBasic6Parser.Cp_ControlIdentifierContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="VisualBasic6Parser.cp_ControlIdentifier"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitCp_ControlIdentifier([NotNull] VisualBasic6Parser.Cp_ControlIdentifierContext context) { }
+
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="VisualBasic6Parser.moduleBlock"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>

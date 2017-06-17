@@ -467,6 +467,55 @@ public interface IVisualBasic6Visitor<Result> : IParseTreeVisitor<Result> {
 	Result VisitModuleBodyElement([NotNull] VisualBasic6Parser.ModuleBodyElementContext context);
 
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="VisualBasic6Parser.controlProperties"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitControlProperties([NotNull] VisualBasic6Parser.ControlPropertiesContext context);
+
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="VisualBasic6Parser.cp_Properties"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitCp_Properties([NotNull] VisualBasic6Parser.Cp_PropertiesContext context);
+
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="VisualBasic6Parser.cp_SingleProperty"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitCp_SingleProperty([NotNull] VisualBasic6Parser.Cp_SinglePropertyContext context);
+
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="VisualBasic6Parser.cp_PropertyName"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitCp_PropertyName([NotNull] VisualBasic6Parser.Cp_PropertyNameContext context);
+
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="VisualBasic6Parser.cp_NestedProperty"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitCp_NestedProperty([NotNull] VisualBasic6Parser.Cp_NestedPropertyContext context);
+
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="VisualBasic6Parser.cp_ControlType"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitCp_ControlType([NotNull] VisualBasic6Parser.Cp_ControlTypeContext context);
+
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="VisualBasic6Parser.cp_ControlIdentifier"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitCp_ControlIdentifier([NotNull] VisualBasic6Parser.Cp_ControlIdentifierContext context);
+
+	/// <summary>
 	/// Visit a parse tree produced by <see cref="VisualBasic6Parser.moduleBlock"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
