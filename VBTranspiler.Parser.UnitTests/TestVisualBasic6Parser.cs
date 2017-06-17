@@ -27,23 +27,24 @@ namespace VBTranspiler.Parser.UnitTests
     [TestMethod]
     public void TestParsingModuleReferences()
     {
-      string inputSource = @"
-VERSION 5.00
-Object = ""{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0""; ""Comdlg32.ocx""
-Object = ""{3B7C8863-D78F-101B-B9B5-04021C009402}#1.2#0""; ""RICHTX32.OCX""";
+      Assert.Fail();
+//      string inputSource = @"
+//VERSION 5.00
+//Object = ""{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0""; ""Comdlg32.ocx""
+//Object = ""{3B7C8863-D78F-101B-B9B5-04021C009402}#1.2#0""; ""RICHTX32.OCX""";
 
-      var parseTree = ParseInputSource(inputSource);
-      Assert.IsNotNull(parseTree.moduleReferences());
+//      var parseTree = ParseInputSource(inputSource);
+//      Assert.IsNotNull(parseTree.moduleReferences());
 
-      var references = parseTree.moduleReferences().moduleReference();
-      Assert.IsNotNull(references);
-      Assert.AreEqual(2, references.Length);
+//      var references = parseTree.moduleReferences().moduleReference();
+//      Assert.IsNotNull(references);
+//      Assert.AreEqual(2, references.Length);
 
-      Assert.AreEqual(@"""{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0""", references[0].moduleReferenceGUID().GetText());
-      Assert.AreEqual(@"""Comdlg32.ocx""", references[0].moduleReferenceComponent().GetText());
+//      Assert.AreEqual(@"""{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0""", references[0].moduleReferenceGUID().GetText());
+//      Assert.AreEqual(@"""Comdlg32.ocx""", references[0].moduleReferenceComponent().GetText());
 
-      Assert.AreEqual(@"""{3B7C8863-D78F-101B-B9B5-04021C009402}#1.2#0""", references[1].moduleReferenceGUID().GetText());
-      Assert.AreEqual(@"""RICHTX32.OCX""", references[1].moduleReferenceComponent().GetText());
+//      Assert.AreEqual(@"""{3B7C8863-D78F-101B-B9B5-04021C009402}#1.2#0""", references[1].moduleReferenceGUID().GetText());
+//      Assert.AreEqual(@"""RICHTX32.OCX""", references[1].moduleReferenceComponent().GetText());
     }
 
     [TestMethod]
@@ -73,180 +74,183 @@ Attribute VB_Exposed = False";
     [TestMethod()]
     public void TestParsingSingleLevelControlBlock()
     {
-      string inputSource = @"
-VERSION 5.00
-Object = ""{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0""; ""Comdlg32.ocx""
-Object = ""{3B7C8863-D78F-101B-B9B5-04021C009402}#1.2#0""; ""RICHTX32.OCX""
-Begin VB.Form SomeForm
-   BorderStyle     =   3  'Fixed Dialog
-   Caption         =   ""Some Form""
-   ClientHeight    =   7950
-   MaxButton       =   0   'False
-End
-";
+      Assert.Fail();
+//      string inputSource = @"
+//VERSION 5.00
+//Object = ""{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0""; ""Comdlg32.ocx""
+//Object = ""{3B7C8863-D78F-101B-B9B5-04021C009402}#1.2#0""; ""RICHTX32.OCX""
+//Begin VB.Form SomeForm
+//   BorderStyle     =   3  'Fixed Dialog
+//   Caption         =   ""Some Form""
+//   ClientHeight    =   7950
+//   MaxButton       =   0   'False
+//End
+//";
 
-      var parseTree = ParseInputSource(inputSource);
-      var moduleControls = parseTree.controlProperties();
+//      var parseTree = ParseInputSource(inputSource);
+//      var moduleControls = parseTree.controlProperties();
 
-      Assert.IsNotNull(moduleControls);
-      Assert.AreEqual("VB.Form", moduleControls.cp_ControlType().GetText());
-      Assert.AreEqual("SomeForm", moduleControls.cp_ControlIdentifier().GetText());
+//      Assert.IsNotNull(moduleControls);
+//      Assert.AreEqual("VB.Form", moduleControls.cp_ControlType().GetText());
+//      Assert.AreEqual("SomeForm", moduleControls.cp_ControlIdentifier().GetText());
 
-      var controlProperties = parseTree.controlProperties().cp_Properties();
-      Assert.IsNotNull(controlProperties);
-      Assert.AreEqual(4, controlProperties.Length);
+//      var controlProperties = parseTree.controlProperties().cp_Properties();
+//      Assert.IsNotNull(controlProperties);
+//      Assert.AreEqual(4, controlProperties.Length);
 
-      Assert.AreEqual("BorderStyle", controlProperties[0].cp_SingleProperty().cp_PropertyName().GetText());
-      Assert.AreEqual("3", controlProperties[0].cp_SingleProperty().literal().GetText());
+//      Assert.AreEqual("BorderStyle", controlProperties[0].cp_SingleProperty().cp_PropertyName().GetText());
+//      Assert.AreEqual("3", controlProperties[0].cp_SingleProperty().literal().GetText());
 
-      Assert.AreEqual("Caption", controlProperties[1].cp_SingleProperty().cp_PropertyName().GetText());
-      Assert.AreEqual(@"""Some Form""", controlProperties[1].cp_SingleProperty().literal().GetText());
+//      Assert.AreEqual("Caption", controlProperties[1].cp_SingleProperty().cp_PropertyName().GetText());
+//      Assert.AreEqual(@"""Some Form""", controlProperties[1].cp_SingleProperty().literal().GetText());
 
-      Assert.AreEqual("ClientHeight", controlProperties[2].cp_SingleProperty().cp_PropertyName().GetText());
-      Assert.AreEqual("7950", controlProperties[2].cp_SingleProperty().literal().GetText());
+//      Assert.AreEqual("ClientHeight", controlProperties[2].cp_SingleProperty().cp_PropertyName().GetText());
+//      Assert.AreEqual("7950", controlProperties[2].cp_SingleProperty().literal().GetText());
 
-      Assert.AreEqual("MaxButton", controlProperties[3].cp_SingleProperty().cp_PropertyName().GetText());
-      Assert.AreEqual("0", controlProperties[3].cp_SingleProperty().literal().GetText());
+//      Assert.AreEqual("MaxButton", controlProperties[3].cp_SingleProperty().cp_PropertyName().GetText());
+//      Assert.AreEqual("0", controlProperties[3].cp_SingleProperty().literal().GetText());
     }
 
     [TestMethod()]
     public void TestParsingNestedLevelControlBlock()
     {
-      string inputSource = @"
-VERSION 5.00
-Object = ""{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0""; ""Comdlg32.ocx""
-Object = ""{3B7C8863-D78F-101B-B9B5-04021C009402}#1.2#0""; ""RICHTX32.OCX""
-Begin VB.Form SomeForm
-  BorderStyle     =   3  'Fixed Dialog
-  Caption         =   ""Some Form""
-  ClientHeight    =   7950
-  MaxButton       =   0   'False
-  Begin VB.Frame SomeFrame
-      Caption         =   ""Frame""
-      Height          =   1335
-      Left            =   120
-      TabIndex        =   8
-      Top             =   120
-      Width           =   10755
-      Begin VB.CommandButton SomeButton
-         Caption         =   ""Button""
-         ItemData        =   ""SomeForm.frx"":0000
-         Height          =   315
-         Left            =   9600
-         TabIndex        =   3
-         Top             =   780
-         Width           =   330
-         _Version        =   21563
-         TextRTF         =   $""SomeForm.frx"":008A
-         RightMargin     =   1.31072e5
-         CurCell.BeginLfDblClick=   0   'False
-      End
-  End
-End
-";
+      Assert.Fail();
+//      string inputSource = @"
+//VERSION 5.00
+//Object = ""{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0""; ""Comdlg32.ocx""
+//Object = ""{3B7C8863-D78F-101B-B9B5-04021C009402}#1.2#0""; ""RICHTX32.OCX""
+//Begin VB.Form SomeForm
+//  BorderStyle     =   3  'Fixed Dialog
+//  Caption         =   ""Some Form""
+//  ClientHeight    =   7950
+//  MaxButton       =   0   'False
+//  Begin VB.Frame SomeFrame
+//      Caption         =   ""Frame""
+//      Height          =   1335
+//      Left            =   120
+//      TabIndex        =   8
+//      Top             =   120
+//      Width           =   10755
+//      Begin VB.CommandButton SomeButton
+//         Caption         =   ""Button""
+//         ItemData        =   ""SomeForm.frx"":0000
+//         Height          =   315
+//         Left            =   9600
+//         TabIndex        =   3
+//         Top             =   780
+//         Width           =   330
+//         _Version        =   21563
+//         TextRTF         =   $""SomeForm.frx"":008A
+//         RightMargin     =   1.31072e5
+//         CurCell.BeginLfDblClick=   0   'False
+//      End
+//  End
+//End
+//";
 
-      var parseTree = ParseInputSource(inputSource);
-      var moduleControls = parseTree.controlProperties();
+//      var parseTree = ParseInputSource(inputSource);
+//      var moduleControls = parseTree.controlProperties();
 
-      Assert.AreEqual("VB.Form", moduleControls.cp_ControlType().GetText());
-      Assert.AreEqual("SomeForm", moduleControls.cp_ControlIdentifier().GetText());
+//      Assert.AreEqual("VB.Form", moduleControls.cp_ControlType().GetText());
+//      Assert.AreEqual("SomeForm", moduleControls.cp_ControlIdentifier().GetText());
 
-      var controlProperties = parseTree.controlProperties().cp_Properties();
-      Assert.AreEqual(5, controlProperties.Length);
+//      var controlProperties = parseTree.controlProperties().cp_Properties();
+//      Assert.AreEqual(5, controlProperties.Length);
 
-      Assert.AreEqual("BorderStyle", controlProperties[0].cp_SingleProperty().cp_PropertyName().GetText());
-      Assert.AreEqual("3", controlProperties[0].cp_SingleProperty().literal().GetText());
+//      Assert.AreEqual("BorderStyle", controlProperties[0].cp_SingleProperty().cp_PropertyName().GetText());
+//      Assert.AreEqual("3", controlProperties[0].cp_SingleProperty().literal().GetText());
 
-      Assert.AreEqual("Caption", controlProperties[1].cp_SingleProperty().cp_PropertyName().GetText());
-      Assert.AreEqual(@"""Some Form""", controlProperties[1].cp_SingleProperty().literal().GetText());
+//      Assert.AreEqual("Caption", controlProperties[1].cp_SingleProperty().cp_PropertyName().GetText());
+//      Assert.AreEqual(@"""Some Form""", controlProperties[1].cp_SingleProperty().literal().GetText());
 
-      Assert.AreEqual("ClientHeight", controlProperties[2].cp_SingleProperty().cp_PropertyName().GetText());
-      Assert.AreEqual("7950", controlProperties[2].cp_SingleProperty().literal().GetText());
+//      Assert.AreEqual("ClientHeight", controlProperties[2].cp_SingleProperty().cp_PropertyName().GetText());
+//      Assert.AreEqual("7950", controlProperties[2].cp_SingleProperty().literal().GetText());
 
-      Assert.AreEqual("MaxButton", controlProperties[3].cp_SingleProperty().cp_PropertyName().GetText());
-      Assert.AreEqual("0", controlProperties[3].cp_SingleProperty().literal().GetText());
+//      Assert.AreEqual("MaxButton", controlProperties[3].cp_SingleProperty().cp_PropertyName().GetText());
+//      Assert.AreEqual("0", controlProperties[3].cp_SingleProperty().literal().GetText());
 
-      //Frame nested control block
-      var frameControlBlock = controlProperties[4].controlProperties();
+//      //Frame nested control block
+//      var frameControlBlock = controlProperties[4].controlProperties();
 
-      Assert.AreEqual(7, frameControlBlock.cp_Properties().Length);
-      Assert.AreEqual("VB.Frame", frameControlBlock.cp_ControlType().GetText());
-      Assert.AreEqual("SomeFrame", frameControlBlock.cp_ControlIdentifier().GetText());
+//      Assert.AreEqual(7, frameControlBlock.cp_Properties().Length);
+//      Assert.AreEqual("VB.Frame", frameControlBlock.cp_ControlType().GetText());
+//      Assert.AreEqual("SomeFrame", frameControlBlock.cp_ControlIdentifier().GetText());
 
-      //Button nested control block
-      var buttonControlBlock = frameControlBlock.cp_Properties().Last().controlProperties();
+//      //Button nested control block
+//      var buttonControlBlock = frameControlBlock.cp_Properties().Last().controlProperties();
 
-      Assert.AreEqual(11, buttonControlBlock.cp_Properties().Length);
-      Assert.AreEqual("VB.CommandButton", buttonControlBlock.cp_ControlType().GetText());
-      Assert.AreEqual("SomeButton", buttonControlBlock.cp_ControlIdentifier().GetText());
+//      Assert.AreEqual(11, buttonControlBlock.cp_Properties().Length);
+//      Assert.AreEqual("VB.CommandButton", buttonControlBlock.cp_ControlType().GetText());
+//      Assert.AreEqual("SomeButton", buttonControlBlock.cp_ControlIdentifier().GetText());
 
-      var frxOffset = buttonControlBlock.cp_Properties()[1].cp_SingleProperty().FRX_OFFSET();
-      Assert.AreEqual(":0000", frxOffset.GetText());
+//      var frxOffset = buttonControlBlock.cp_Properties()[1].cp_SingleProperty().FRX_OFFSET();
+//      Assert.AreEqual(":0000", frxOffset.GetText());
 
-      var secondFrxOffset = buttonControlBlock.cp_Properties()[8].cp_SingleProperty().FRX_OFFSET();
-      Assert.AreEqual(":008A", secondFrxOffset.GetText());
+//      var secondFrxOffset = buttonControlBlock.cp_Properties()[8].cp_SingleProperty().FRX_OFFSET();
+//      Assert.AreEqual(":008A", secondFrxOffset.GetText());
     }
 
     [TestMethod()]
     public void TestParsingBeginPropertyBlock()
     {
-      string inputSource = @"
-VERSION 5.00
-Object = ""{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0""; ""Comdlg32.ocx""
-Object = ""{3B7C8863-D78F-101B-B9B5-04021C009402}#1.2#0""; ""RICHTX32.OCX""
-Begin VB.Form SomeForm
-  BorderStyle     =   3  'Fixed Dialog
-  Begin VB.Frame SomeFrame
-      Caption         =   ""Frame""
-      BeginProperty ColumnHeader(1) {BDD1F052-858B-11D1-B16A-00C0F0283628}
-          Text        =   ""Description""
-          Height      =   315
-          Left        =   9600
-          TabInd      =   3
-          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-              Name            =   ""Courier New""
-              Size            =   9
-              Charset         =   0
-              Weight          =   400
-              Underline       =   0   'False
-              Italic          =   0   'False
-              Strikethrough   =   0   'False
-          EndProperty
-          BeginProperty SomeNestedProp 
-              Name            =   ""Tahoma""
-              Size            =   8.25
-              Charset         =   0
-              Weight          =   400
-              Underline       =   0   'False
-              Italic          =   0   'False
-              Object.Strikethrough   =   0   'False
-          EndProperty
-          BeginProperty Panels {8E3867A5-8586-11D1-B16A-00C0F0283628} 
-          EndProperty
-      EndProperty
-      Top             =   120
-      Width           =   10755
-  End
-End
-";
-      var parseTree = ParseInputSource(inputSource);
-      var moduleControls = parseTree.controlProperties();
-      Assert.AreEqual(2, moduleControls.cp_Properties().Length);
+//      string inputSource = @"
+//VERSION 5.00
+//Object = ""{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0""; ""Comdlg32.ocx""
+//Object = ""{3B7C8863-D78F-101B-B9B5-04021C009402}#1.2#0""; ""RICHTX32.OCX""
+//Begin VB.Form SomeForm
+//  BorderStyle     =   3  'Fixed Dialog
+//  Begin VB.Frame SomeFrame
+//      Caption         =   ""Frame""
+//      BeginProperty ColumnHeader(1) {BDD1F052-858B-11D1-B16A-00C0F0283628}
+//          Text        =   ""Description""
+//          Height      =   315
+//          Left        =   9600
+//          TabInd      =   3
+//          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+//              Name            =   ""Courier New""
+//              Size            =   9
+//              Charset         =   0
+//              Weight          =   400
+//              Underline       =   0   'False
+//              Italic          =   0   'False
+//              Strikethrough   =   0   'False
+//          EndProperty
+//          BeginProperty SomeNestedProp 
+//              Name            =   ""Tahoma""
+//              Size            =   8.25
+//              Charset         =   0
+//              Weight          =   400
+//              Underline       =   0   'False
+//              Italic          =   0   'False
+//              Object.Strikethrough   =   0   'False
+//          EndProperty
+//          BeginProperty Panels {8E3867A5-8586-11D1-B16A-00C0F0283628} 
+//          EndProperty
+//      EndProperty
+//      Top             =   120
+//      Width           =   10755
+//  End
+//End
+//";
+      Assert.Fail();
+      //var parseTree = ParseInputSource(inputSource);
+      //var moduleControls = parseTree.controlProperties();
+      //Assert.AreEqual(2, moduleControls.cp_Properties().Length);
 
-      var frameProp = moduleControls.cp_Properties()[1];
-      Assert.AreEqual("SomeFrame", frameProp.controlProperties().cp_ControlIdentifier().GetText());
+      //var frameProp = moduleControls.cp_Properties()[1];
+      //Assert.AreEqual("SomeFrame", frameProp.controlProperties().cp_ControlIdentifier().GetText());
 
-      var firstNestedProp = frameProp.controlProperties().cp_Properties()[1];
+      //var firstNestedProp = frameProp.controlProperties().cp_Properties()[1];
 
-      Assert.AreEqual("ColumnHeader", firstNestedProp.cp_NestedProperty().ambiguousIdentifier().GetText());
-      Assert.IsNotNull(firstNestedProp.cp_NestedProperty());
-      Assert.AreEqual(7, firstNestedProp.cp_NestedProperty().cp_Properties().Length);
+      //Assert.AreEqual("ColumnHeader", firstNestedProp.cp_NestedProperty().ambiguousIdentifier().GetText());
+      //Assert.IsNotNull(firstNestedProp.cp_NestedProperty());
+      //Assert.AreEqual(7, firstNestedProp.cp_NestedProperty().cp_Properties().Length);
 
-      var secondNestedProp = firstNestedProp.cp_NestedProperty().cp_Properties()[4];
+      //var secondNestedProp = firstNestedProp.cp_NestedProperty().cp_Properties()[4];
 
-      Assert.AreEqual("Font", secondNestedProp.cp_NestedProperty().ambiguousIdentifier().GetText());
-      Assert.IsNotNull(secondNestedProp.cp_NestedProperty());
-      Assert.AreEqual(7, secondNestedProp.cp_NestedProperty().cp_Properties().Length);
+      //Assert.AreEqual("Font", secondNestedProp.cp_NestedProperty().ambiguousIdentifier().GetText());
+      //Assert.IsNotNull(secondNestedProp.cp_NestedProperty());
+      //Assert.AreEqual(7, secondNestedProp.cp_NestedProperty().cp_Properties().Length);
     }
 
     [TestMethod()]

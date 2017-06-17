@@ -117,38 +117,38 @@ namespace VBTranspiler.CodeGenerator
     /// <returns></returns>
     public override CodeGeneratorBase VisitEnumerationStmt(VisualBasic6Parser.EnumerationStmtContext context)
     {
-      SyntaxTokenList accessibility = new SyntaxTokenList();
-      VisualBasic6Parser.PublicPrivateVisibilityContext vis = context.publicPrivateVisibility();
+      //SyntaxTokenList accessibility = new SyntaxTokenList();
+      //VisualBasic6Parser.PublicPrivateVisibilityContext vis = context.publicPrivateVisibility();
 
-      if(vis != null)
-      {
-        if (vis.PUBLIC() != null)
-          accessibility = RoslynUtils.PublicModifier;
-        else if (vis.PRIVATE() != null)
-          accessibility = RoslynUtils.PrivateModifier;
-      }
+      //if(vis != null)
+      //{
+      //  if (vis.PUBLIC() != null)
+      //    accessibility = RoslynUtils.PublicModifier;
+      //  else if (vis.PRIVATE() != null)
+      //    accessibility = RoslynUtils.PrivateModifier;
+      //}
 
-      EnumStatementSyntax stmt = SyntaxFactory.EnumStatement(context.ambiguousIdentifier().GetText()).WithModifiers(accessibility);
-      EnumBlockSyntax enumBlock = SyntaxFactory.EnumBlock(stmt);
-      List<EnumMemberDeclarationSyntax> members = new List<EnumMemberDeclarationSyntax>();
+      //EnumStatementSyntax stmt = SyntaxFactory.EnumStatement(context.ambiguousIdentifier().GetText()).WithModifiers(accessibility);
+      //EnumBlockSyntax enumBlock = SyntaxFactory.EnumBlock(stmt);
+      //List<EnumMemberDeclarationSyntax> members = new List<EnumMemberDeclarationSyntax>();
 
-      foreach(var constant in context.enumerationStmt_Constant())
-      {
-        string constantName = constant.ambiguousIdentifier().GetText();
+      //foreach(var constant in context.enumerationStmt_Constant())
+      //{
+      //  string constantName = constant.ambiguousIdentifier().GetText();
 
-        if (constant.valueStmt() != null)
-        {
-          string constantValue = constant.valueStmt().GetText();
+      //  if (constant.valueStmt() != null)
+      //  {
+      //    string constantValue = constant.valueStmt().GetText();
 
-          members.Add(SyntaxFactory.EnumMemberDeclaration(constantName)
-                      .WithInitializer(SyntaxFactory.EqualsValue(SyntaxFactory.NumericLiteralExpression(SyntaxFactory.ParseToken(constantValue)))));
+      //    members.Add(SyntaxFactory.EnumMemberDeclaration(constantName)
+      //                .WithInitializer(SyntaxFactory.EqualsValue(SyntaxFactory.NumericLiteralExpression(SyntaxFactory.ParseToken(constantValue)))));
 
-        }
-        else
-          members.Add(SyntaxFactory.EnumMemberDeclaration(constantName));
-      }
+      //  }
+      //  else
+      //    members.Add(SyntaxFactory.EnumMemberDeclaration(constantName));
+      //}
 
-      mMainDeclMembers.Add(enumBlock.WithMembers(SyntaxFactory.List<StatementSyntax>(members)));
+      //mMainDeclMembers.Add(enumBlock.WithMembers(SyntaxFactory.List<StatementSyntax>(members)));
       return this;
     }
 
@@ -159,54 +159,54 @@ namespace VBTranspiler.CodeGenerator
     /// <returns></returns>
     public override CodeGeneratorBase VisitConstStmt(VisualBasic6Parser.ConstStmtContext context)
     {
-      List<SyntaxToken> modifiers= new List<SyntaxToken>();
-      VisualBasic6Parser.PublicPrivateGlobalVisibilityContext vis = context.publicPrivateGlobalVisibility();
+      //List<SyntaxToken> modifiers= new List<SyntaxToken>();
+      //VisualBasic6Parser.PublicPrivateGlobalVisibilityContext vis = context.publicPrivateGlobalVisibility();
 
-      if(vis != null)
-      {
-        if (vis.publicPrivateVisibility().PUBLIC() != null || vis.GLOBAL() != null)
-          modifiers.Add(SyntaxFactory.Token(SyntaxKind.PublicKeyword));
-        else if (vis.publicPrivateVisibility().PRIVATE() != null)
-          modifiers.Add(SyntaxFactory.Token(SyntaxKind.PrivateKeyword));
-      }
+      //if(vis != null)
+      //{
+      //  if (vis.publicPrivateVisibility().PUBLIC() != null || vis.GLOBAL() != null)
+      //    modifiers.Add(SyntaxFactory.Token(SyntaxKind.PublicKeyword));
+      //  else if (vis.publicPrivateVisibility().PRIVATE() != null)
+      //    modifiers.Add(SyntaxFactory.Token(SyntaxKind.PrivateKeyword));
+      //}
 
-      modifiers.Add(SyntaxFactory.Token(SyntaxKind.ConstKeyword));
+      //modifiers.Add(SyntaxFactory.Token(SyntaxKind.ConstKeyword));
 
-      foreach(VisualBasic6Parser.ConstSubStmtContext subStmt in context.constSubStmt())
-      {
-        SimpleAsClauseSyntax asClause = null;
+      //foreach(VisualBasic6Parser.ConstSubStmtContext subStmt in context.constSubStmt())
+      //{
+      //  SimpleAsClauseSyntax asClause = null;
 
-        if (subStmt.asTypeClause() != null)
-          asClause = SyntaxFactory.SimpleAsClause(SyntaxFactory.ParseTypeName(subStmt.asTypeClause().type().GetText()));
+      //  if (subStmt.asTypeClause() != null)
+      //    asClause = SyntaxFactory.SimpleAsClause(SyntaxFactory.ParseTypeName(subStmt.asTypeClause().type().GetText()));
          
-        ModifiedIdentifierSyntax identifier = SyntaxFactory.ModifiedIdentifier(subStmt.ambiguousIdentifier().GetText());
-        ExpressionSyntax initialiser = null;
+      //  ModifiedIdentifierSyntax identifier = SyntaxFactory.ModifiedIdentifier(subStmt.ambiguousIdentifier().GetText());
+      //  ExpressionSyntax initialiser = null;
 
-        string initialiserExpr = subStmt.valueStmt().GetText();
+      //  string initialiserExpr = subStmt.valueStmt().GetText();
 
-        //ParseExpression can't handle date/time literals - Roslyn bug? - //so handle them manually here
-        if (initialiserExpr.StartsWith("#"))
-        {
-          string trimmedInitialiser = initialiserExpr.Trim(new char[] { '#' });
-          DateTime parsedVal = new DateTime();
+      //  //ParseExpression can't handle date/time literals - Roslyn bug? - //so handle them manually here
+      //  if (initialiserExpr.StartsWith("#"))
+      //  {
+      //    string trimmedInitialiser = initialiserExpr.Trim(new char[] { '#' });
+      //    DateTime parsedVal = new DateTime();
 
-          if (trimmedInitialiser.Contains("AM") || trimmedInitialiser.Contains("PM"))
-            parsedVal = DateTime.ParseExact(trimmedInitialiser, "M/d/yyyy h:mm:ss tt", CultureInfo.InvariantCulture);
-          else
-            parsedVal = DateTime.ParseExact(trimmedInitialiser, "M/d/yyyy", CultureInfo.InvariantCulture);
+      //    if (trimmedInitialiser.Contains("AM") || trimmedInitialiser.Contains("PM"))
+      //      parsedVal = DateTime.ParseExact(trimmedInitialiser, "M/d/yyyy h:mm:ss tt", CultureInfo.InvariantCulture);
+      //    else
+      //      parsedVal = DateTime.ParseExact(trimmedInitialiser, "M/d/yyyy", CultureInfo.InvariantCulture);
 
-          initialiser = SyntaxFactory.DateLiteralExpression(SyntaxFactory.DateLiteralToken(initialiserExpr, parsedVal));
-        }
-        else
-          initialiser = SyntaxFactory.ParseExpression(initialiserExpr);
+      //    initialiser = SyntaxFactory.DateLiteralExpression(SyntaxFactory.DateLiteralToken(initialiserExpr, parsedVal));
+      //  }
+      //  else
+      //    initialiser = SyntaxFactory.ParseExpression(initialiserExpr);
 
-        VariableDeclaratorSyntax varDecl = SyntaxFactory.VariableDeclarator(identifier).WithInitializer(SyntaxFactory.EqualsValue(initialiser));
+      //  VariableDeclaratorSyntax varDecl = SyntaxFactory.VariableDeclarator(identifier).WithInitializer(SyntaxFactory.EqualsValue(initialiser));
 
-        if(asClause != null)
-          varDecl = varDecl.WithAsClause(asClause);
+      //  if(asClause != null)
+      //    varDecl = varDecl.WithAsClause(asClause);
 
-        mMainDeclMembers.Add(SyntaxFactory.FieldDeclaration(varDecl).WithModifiers(SyntaxFactory.TokenList(modifiers)));
-      }
+      //  mMainDeclMembers.Add(SyntaxFactory.FieldDeclaration(varDecl).WithModifiers(SyntaxFactory.TokenList(modifiers)));
+      //}
 
       return base.VisitConstStmt(context);
     }

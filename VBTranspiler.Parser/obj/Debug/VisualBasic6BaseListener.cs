@@ -591,49 +591,19 @@ public partial class VisualBasic6BaseListener : IVisualBasic6Listener {
 	public virtual void ExitOptionCompareStmt([NotNull] VisualBasic6Parser.OptionCompareStmtContext context) { }
 
 	/// <summary>
-	/// Enter a parse tree produced by the <c>caseCondValue</c>
+	/// Enter a parse tree produced by the <c>caseCondExpr</c>
 	/// labeled alternative in <see cref="VisualBasic6Parser.sC_Cond"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterCaseCondValue([NotNull] VisualBasic6Parser.CaseCondValueContext context) { }
+	public virtual void EnterCaseCondExpr([NotNull] VisualBasic6Parser.CaseCondExprContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by the <c>caseCondValue</c>
+	/// Exit a parse tree produced by the <c>caseCondExpr</c>
 	/// labeled alternative in <see cref="VisualBasic6Parser.sC_Cond"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitCaseCondValue([NotNull] VisualBasic6Parser.CaseCondValueContext context) { }
-
-	/// <summary>
-	/// Enter a parse tree produced by the <c>caseCondTo</c>
-	/// labeled alternative in <see cref="VisualBasic6Parser.sC_Cond"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterCaseCondTo([NotNull] VisualBasic6Parser.CaseCondToContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by the <c>caseCondTo</c>
-	/// labeled alternative in <see cref="VisualBasic6Parser.sC_Cond"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitCaseCondTo([NotNull] VisualBasic6Parser.CaseCondToContext context) { }
-
-	/// <summary>
-	/// Enter a parse tree produced by the <c>caseCondIs</c>
-	/// labeled alternative in <see cref="VisualBasic6Parser.sC_Cond"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterCaseCondIs([NotNull] VisualBasic6Parser.CaseCondIsContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by the <c>caseCondIs</c>
-	/// labeled alternative in <see cref="VisualBasic6Parser.sC_Cond"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitCaseCondIs([NotNull] VisualBasic6Parser.CaseCondIsContext context) { }
+	public virtual void ExitCaseCondExpr([NotNull] VisualBasic6Parser.CaseCondExprContext context) { }
 
 	/// <summary>
 	/// Enter a parse tree produced by the <c>caseCondElse</c>
@@ -649,6 +619,51 @@ public partial class VisualBasic6BaseListener : IVisualBasic6Listener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitCaseCondElse([NotNull] VisualBasic6Parser.CaseCondElseContext context) { }
+
+	/// <summary>
+	/// Enter a parse tree produced by the <c>caseCondExprValue</c>
+	/// labeled alternative in <see cref="VisualBasic6Parser.sC_CondExpr"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterCaseCondExprValue([NotNull] VisualBasic6Parser.CaseCondExprValueContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>caseCondExprValue</c>
+	/// labeled alternative in <see cref="VisualBasic6Parser.sC_CondExpr"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitCaseCondExprValue([NotNull] VisualBasic6Parser.CaseCondExprValueContext context) { }
+
+	/// <summary>
+	/// Enter a parse tree produced by the <c>caseCondExprIs</c>
+	/// labeled alternative in <see cref="VisualBasic6Parser.sC_CondExpr"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterCaseCondExprIs([NotNull] VisualBasic6Parser.CaseCondExprIsContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>caseCondExprIs</c>
+	/// labeled alternative in <see cref="VisualBasic6Parser.sC_CondExpr"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitCaseCondExprIs([NotNull] VisualBasic6Parser.CaseCondExprIsContext context) { }
+
+	/// <summary>
+	/// Enter a parse tree produced by the <c>caseCondExprTo</c>
+	/// labeled alternative in <see cref="VisualBasic6Parser.sC_CondExpr"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterCaseCondExprTo([NotNull] VisualBasic6Parser.CaseCondExprToContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>caseCondExprTo</c>
+	/// labeled alternative in <see cref="VisualBasic6Parser.sC_CondExpr"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitCaseCondExprTo([NotNull] VisualBasic6Parser.CaseCondExprToContext context) { }
 
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="VisualBasic6Parser.startRule"/>.
@@ -675,58 +690,6 @@ public partial class VisualBasic6BaseListener : IVisualBasic6Listener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitModule([NotNull] VisualBasic6Parser.ModuleContext context) { }
-
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VisualBasic6Parser.moduleReferences"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterModuleReferences([NotNull] VisualBasic6Parser.ModuleReferencesContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VisualBasic6Parser.moduleReferences"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitModuleReferences([NotNull] VisualBasic6Parser.ModuleReferencesContext context) { }
-
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VisualBasic6Parser.moduleReference"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterModuleReference([NotNull] VisualBasic6Parser.ModuleReferenceContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VisualBasic6Parser.moduleReference"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitModuleReference([NotNull] VisualBasic6Parser.ModuleReferenceContext context) { }
-
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VisualBasic6Parser.moduleReferenceGUID"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterModuleReferenceGUID([NotNull] VisualBasic6Parser.ModuleReferenceGUIDContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VisualBasic6Parser.moduleReferenceGUID"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitModuleReferenceGUID([NotNull] VisualBasic6Parser.ModuleReferenceGUIDContext context) { }
-
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VisualBasic6Parser.moduleReferenceComponent"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterModuleReferenceComponent([NotNull] VisualBasic6Parser.ModuleReferenceComponentContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VisualBasic6Parser.moduleReferenceComponent"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitModuleReferenceComponent([NotNull] VisualBasic6Parser.ModuleReferenceComponentContext context) { }
 
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="VisualBasic6Parser.moduleHeader"/>.
@@ -833,97 +796,6 @@ public partial class VisualBasic6BaseListener : IVisualBasic6Listener {
 	public virtual void ExitModuleBodyElement([NotNull] VisualBasic6Parser.ModuleBodyElementContext context) { }
 
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="VisualBasic6Parser.controlProperties"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterControlProperties([NotNull] VisualBasic6Parser.ControlPropertiesContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VisualBasic6Parser.controlProperties"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitControlProperties([NotNull] VisualBasic6Parser.ControlPropertiesContext context) { }
-
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VisualBasic6Parser.cp_Properties"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterCp_Properties([NotNull] VisualBasic6Parser.Cp_PropertiesContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VisualBasic6Parser.cp_Properties"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitCp_Properties([NotNull] VisualBasic6Parser.Cp_PropertiesContext context) { }
-
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VisualBasic6Parser.cp_SingleProperty"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterCp_SingleProperty([NotNull] VisualBasic6Parser.Cp_SinglePropertyContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VisualBasic6Parser.cp_SingleProperty"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitCp_SingleProperty([NotNull] VisualBasic6Parser.Cp_SinglePropertyContext context) { }
-
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VisualBasic6Parser.cp_PropertyName"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterCp_PropertyName([NotNull] VisualBasic6Parser.Cp_PropertyNameContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VisualBasic6Parser.cp_PropertyName"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitCp_PropertyName([NotNull] VisualBasic6Parser.Cp_PropertyNameContext context) { }
-
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VisualBasic6Parser.cp_NestedProperty"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterCp_NestedProperty([NotNull] VisualBasic6Parser.Cp_NestedPropertyContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VisualBasic6Parser.cp_NestedProperty"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitCp_NestedProperty([NotNull] VisualBasic6Parser.Cp_NestedPropertyContext context) { }
-
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VisualBasic6Parser.cp_ControlType"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterCp_ControlType([NotNull] VisualBasic6Parser.Cp_ControlTypeContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VisualBasic6Parser.cp_ControlType"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitCp_ControlType([NotNull] VisualBasic6Parser.Cp_ControlTypeContext context) { }
-
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VisualBasic6Parser.cp_ControlIdentifier"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterCp_ControlIdentifier([NotNull] VisualBasic6Parser.Cp_ControlIdentifierContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VisualBasic6Parser.cp_ControlIdentifier"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitCp_ControlIdentifier([NotNull] VisualBasic6Parser.Cp_ControlIdentifierContext context) { }
-
-	/// <summary>
 	/// Enter a parse tree produced by <see cref="VisualBasic6Parser.moduleBlock"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -976,17 +848,17 @@ public partial class VisualBasic6BaseListener : IVisualBasic6Listener {
 	public virtual void ExitBlockStmt([NotNull] VisualBasic6Parser.BlockStmtContext context) { }
 
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="VisualBasic6Parser.appactivateStmt"/>.
+	/// Enter a parse tree produced by <see cref="VisualBasic6Parser.appActivateStmt"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterAppactivateStmt([NotNull] VisualBasic6Parser.AppactivateStmtContext context) { }
+	public virtual void EnterAppActivateStmt([NotNull] VisualBasic6Parser.AppActivateStmtContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="VisualBasic6Parser.appactivateStmt"/>.
+	/// Exit a parse tree produced by <see cref="VisualBasic6Parser.appActivateStmt"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitAppactivateStmt([NotNull] VisualBasic6Parser.AppactivateStmtContext context) { }
+	public virtual void ExitAppActivateStmt([NotNull] VisualBasic6Parser.AppActivateStmtContext context) { }
 
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="VisualBasic6Parser.beepStmt"/>.
@@ -1002,30 +874,30 @@ public partial class VisualBasic6BaseListener : IVisualBasic6Listener {
 	public virtual void ExitBeepStmt([NotNull] VisualBasic6Parser.BeepStmtContext context) { }
 
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="VisualBasic6Parser.chdirStmt"/>.
+	/// Enter a parse tree produced by <see cref="VisualBasic6Parser.chDirStmt"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterChdirStmt([NotNull] VisualBasic6Parser.ChdirStmtContext context) { }
+	public virtual void EnterChDirStmt([NotNull] VisualBasic6Parser.ChDirStmtContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="VisualBasic6Parser.chdirStmt"/>.
+	/// Exit a parse tree produced by <see cref="VisualBasic6Parser.chDirStmt"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitChdirStmt([NotNull] VisualBasic6Parser.ChdirStmtContext context) { }
+	public virtual void ExitChDirStmt([NotNull] VisualBasic6Parser.ChDirStmtContext context) { }
 
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="VisualBasic6Parser.chdriveStmt"/>.
+	/// Enter a parse tree produced by <see cref="VisualBasic6Parser.chDriveStmt"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterChdriveStmt([NotNull] VisualBasic6Parser.ChdriveStmtContext context) { }
+	public virtual void EnterChDriveStmt([NotNull] VisualBasic6Parser.ChDriveStmtContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="VisualBasic6Parser.chdriveStmt"/>.
+	/// Exit a parse tree produced by <see cref="VisualBasic6Parser.chDriveStmt"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitChdriveStmt([NotNull] VisualBasic6Parser.ChdriveStmtContext context) { }
+	public virtual void ExitChDriveStmt([NotNull] VisualBasic6Parser.ChDriveStmtContext context) { }
 
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="VisualBasic6Parser.closeStmt"/>.
@@ -1119,56 +991,17 @@ public partial class VisualBasic6BaseListener : IVisualBasic6Listener {
 	public virtual void ExitDeleteSettingStmt([NotNull] VisualBasic6Parser.DeleteSettingStmtContext context) { }
 
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="VisualBasic6Parser.doLoopStmt_LJM"/>.
+	/// Enter a parse tree produced by <see cref="VisualBasic6Parser.doLoopStmt"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterDoLoopStmt_LJM([NotNull] VisualBasic6Parser.DoLoopStmt_LJMContext context) { }
+	public virtual void EnterDoLoopStmt([NotNull] VisualBasic6Parser.DoLoopStmtContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="VisualBasic6Parser.doLoopStmt_LJM"/>.
+	/// Exit a parse tree produced by <see cref="VisualBasic6Parser.doLoopStmt"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitDoLoopStmt_LJM([NotNull] VisualBasic6Parser.DoLoopStmt_LJMContext context) { }
-
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VisualBasic6Parser.doLoopStmt_1"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterDoLoopStmt_1([NotNull] VisualBasic6Parser.DoLoopStmt_1Context context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VisualBasic6Parser.doLoopStmt_1"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitDoLoopStmt_1([NotNull] VisualBasic6Parser.DoLoopStmt_1Context context) { }
-
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VisualBasic6Parser.doLoopStmt_2"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterDoLoopStmt_2([NotNull] VisualBasic6Parser.DoLoopStmt_2Context context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VisualBasic6Parser.doLoopStmt_2"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitDoLoopStmt_2([NotNull] VisualBasic6Parser.DoLoopStmt_2Context context) { }
-
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VisualBasic6Parser.doLoopStmt_3"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterDoLoopStmt_3([NotNull] VisualBasic6Parser.DoLoopStmt_3Context context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VisualBasic6Parser.doLoopStmt_3"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitDoLoopStmt_3([NotNull] VisualBasic6Parser.DoLoopStmt_3Context context) { }
+	public virtual void ExitDoLoopStmt([NotNull] VisualBasic6Parser.DoLoopStmtContext context) { }
 
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="VisualBasic6Parser.endStmt"/>.
@@ -1951,6 +1784,19 @@ public partial class VisualBasic6BaseListener : IVisualBasic6Listener {
 	public virtual void ExitSC_Cond([NotNull] VisualBasic6Parser.SC_CondContext context) { }
 
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="VisualBasic6Parser.sC_CondExpr"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterSC_CondExpr([NotNull] VisualBasic6Parser.SC_CondExprContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="VisualBasic6Parser.sC_CondExpr"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitSC_CondExpr([NotNull] VisualBasic6Parser.SC_CondExprContext context) { }
+
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="VisualBasic6Parser.sendkeysStmt"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -2612,32 +2458,6 @@ public partial class VisualBasic6BaseListener : IVisualBasic6Listener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitTypeHint([NotNull] VisualBasic6Parser.TypeHintContext context) { }
-
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VisualBasic6Parser.publicPrivateVisibility"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterPublicPrivateVisibility([NotNull] VisualBasic6Parser.PublicPrivateVisibilityContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VisualBasic6Parser.publicPrivateVisibility"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitPublicPrivateVisibility([NotNull] VisualBasic6Parser.PublicPrivateVisibilityContext context) { }
-
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="VisualBasic6Parser.publicPrivateGlobalVisibility"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterPublicPrivateGlobalVisibility([NotNull] VisualBasic6Parser.PublicPrivateGlobalVisibilityContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="VisualBasic6Parser.publicPrivateGlobalVisibility"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitPublicPrivateGlobalVisibility([NotNull] VisualBasic6Parser.PublicPrivateGlobalVisibilityContext context) { }
 
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="VisualBasic6Parser.visibility"/>.

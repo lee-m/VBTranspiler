@@ -329,28 +329,12 @@ public interface IVisualBasic6Visitor<Result> : IParseTreeVisitor<Result> {
 	Result VisitOptionCompareStmt([NotNull] VisualBasic6Parser.OptionCompareStmtContext context);
 
 	/// <summary>
-	/// Visit a parse tree produced by the <c>caseCondValue</c>
+	/// Visit a parse tree produced by the <c>caseCondExpr</c>
 	/// labeled alternative in <see cref="VisualBasic6Parser.sC_Cond"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitCaseCondValue([NotNull] VisualBasic6Parser.CaseCondValueContext context);
-
-	/// <summary>
-	/// Visit a parse tree produced by the <c>caseCondTo</c>
-	/// labeled alternative in <see cref="VisualBasic6Parser.sC_Cond"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitCaseCondTo([NotNull] VisualBasic6Parser.CaseCondToContext context);
-
-	/// <summary>
-	/// Visit a parse tree produced by the <c>caseCondIs</c>
-	/// labeled alternative in <see cref="VisualBasic6Parser.sC_Cond"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitCaseCondIs([NotNull] VisualBasic6Parser.CaseCondIsContext context);
+	Result VisitCaseCondExpr([NotNull] VisualBasic6Parser.CaseCondExprContext context);
 
 	/// <summary>
 	/// Visit a parse tree produced by the <c>caseCondElse</c>
@@ -359,6 +343,30 @@ public interface IVisualBasic6Visitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitCaseCondElse([NotNull] VisualBasic6Parser.CaseCondElseContext context);
+
+	/// <summary>
+	/// Visit a parse tree produced by the <c>caseCondExprValue</c>
+	/// labeled alternative in <see cref="VisualBasic6Parser.sC_CondExpr"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitCaseCondExprValue([NotNull] VisualBasic6Parser.CaseCondExprValueContext context);
+
+	/// <summary>
+	/// Visit a parse tree produced by the <c>caseCondExprIs</c>
+	/// labeled alternative in <see cref="VisualBasic6Parser.sC_CondExpr"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitCaseCondExprIs([NotNull] VisualBasic6Parser.CaseCondExprIsContext context);
+
+	/// <summary>
+	/// Visit a parse tree produced by the <c>caseCondExprTo</c>
+	/// labeled alternative in <see cref="VisualBasic6Parser.sC_CondExpr"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitCaseCondExprTo([NotNull] VisualBasic6Parser.CaseCondExprToContext context);
 
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="VisualBasic6Parser.startRule"/>.
@@ -373,34 +381,6 @@ public interface IVisualBasic6Visitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitModule([NotNull] VisualBasic6Parser.ModuleContext context);
-
-	/// <summary>
-	/// Visit a parse tree produced by <see cref="VisualBasic6Parser.moduleReferences"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitModuleReferences([NotNull] VisualBasic6Parser.ModuleReferencesContext context);
-
-	/// <summary>
-	/// Visit a parse tree produced by <see cref="VisualBasic6Parser.moduleReference"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitModuleReference([NotNull] VisualBasic6Parser.ModuleReferenceContext context);
-
-	/// <summary>
-	/// Visit a parse tree produced by <see cref="VisualBasic6Parser.moduleReferenceGUID"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitModuleReferenceGUID([NotNull] VisualBasic6Parser.ModuleReferenceGUIDContext context);
-
-	/// <summary>
-	/// Visit a parse tree produced by <see cref="VisualBasic6Parser.moduleReferenceComponent"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitModuleReferenceComponent([NotNull] VisualBasic6Parser.ModuleReferenceComponentContext context);
 
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="VisualBasic6Parser.moduleHeader"/>.
@@ -459,55 +439,6 @@ public interface IVisualBasic6Visitor<Result> : IParseTreeVisitor<Result> {
 	Result VisitModuleBodyElement([NotNull] VisualBasic6Parser.ModuleBodyElementContext context);
 
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="VisualBasic6Parser.controlProperties"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitControlProperties([NotNull] VisualBasic6Parser.ControlPropertiesContext context);
-
-	/// <summary>
-	/// Visit a parse tree produced by <see cref="VisualBasic6Parser.cp_Properties"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitCp_Properties([NotNull] VisualBasic6Parser.Cp_PropertiesContext context);
-
-	/// <summary>
-	/// Visit a parse tree produced by <see cref="VisualBasic6Parser.cp_SingleProperty"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitCp_SingleProperty([NotNull] VisualBasic6Parser.Cp_SinglePropertyContext context);
-
-	/// <summary>
-	/// Visit a parse tree produced by <see cref="VisualBasic6Parser.cp_PropertyName"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitCp_PropertyName([NotNull] VisualBasic6Parser.Cp_PropertyNameContext context);
-
-	/// <summary>
-	/// Visit a parse tree produced by <see cref="VisualBasic6Parser.cp_NestedProperty"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitCp_NestedProperty([NotNull] VisualBasic6Parser.Cp_NestedPropertyContext context);
-
-	/// <summary>
-	/// Visit a parse tree produced by <see cref="VisualBasic6Parser.cp_ControlType"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitCp_ControlType([NotNull] VisualBasic6Parser.Cp_ControlTypeContext context);
-
-	/// <summary>
-	/// Visit a parse tree produced by <see cref="VisualBasic6Parser.cp_ControlIdentifier"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitCp_ControlIdentifier([NotNull] VisualBasic6Parser.Cp_ControlIdentifierContext context);
-
-	/// <summary>
 	/// Visit a parse tree produced by <see cref="VisualBasic6Parser.moduleBlock"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -536,11 +467,11 @@ public interface IVisualBasic6Visitor<Result> : IParseTreeVisitor<Result> {
 	Result VisitBlockStmt([NotNull] VisualBasic6Parser.BlockStmtContext context);
 
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="VisualBasic6Parser.appactivateStmt"/>.
+	/// Visit a parse tree produced by <see cref="VisualBasic6Parser.appActivateStmt"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitAppactivateStmt([NotNull] VisualBasic6Parser.AppactivateStmtContext context);
+	Result VisitAppActivateStmt([NotNull] VisualBasic6Parser.AppActivateStmtContext context);
 
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="VisualBasic6Parser.beepStmt"/>.
@@ -550,18 +481,18 @@ public interface IVisualBasic6Visitor<Result> : IParseTreeVisitor<Result> {
 	Result VisitBeepStmt([NotNull] VisualBasic6Parser.BeepStmtContext context);
 
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="VisualBasic6Parser.chdirStmt"/>.
+	/// Visit a parse tree produced by <see cref="VisualBasic6Parser.chDirStmt"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitChdirStmt([NotNull] VisualBasic6Parser.ChdirStmtContext context);
+	Result VisitChDirStmt([NotNull] VisualBasic6Parser.ChDirStmtContext context);
 
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="VisualBasic6Parser.chdriveStmt"/>.
+	/// Visit a parse tree produced by <see cref="VisualBasic6Parser.chDriveStmt"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitChdriveStmt([NotNull] VisualBasic6Parser.ChdriveStmtContext context);
+	Result VisitChDriveStmt([NotNull] VisualBasic6Parser.ChDriveStmtContext context);
 
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="VisualBasic6Parser.closeStmt"/>.
@@ -613,32 +544,11 @@ public interface IVisualBasic6Visitor<Result> : IParseTreeVisitor<Result> {
 	Result VisitDeleteSettingStmt([NotNull] VisualBasic6Parser.DeleteSettingStmtContext context);
 
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="VisualBasic6Parser.doLoopStmt_LJM"/>.
+	/// Visit a parse tree produced by <see cref="VisualBasic6Parser.doLoopStmt"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitDoLoopStmt_LJM([NotNull] VisualBasic6Parser.DoLoopStmt_LJMContext context);
-
-	/// <summary>
-	/// Visit a parse tree produced by <see cref="VisualBasic6Parser.doLoopStmt_1"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitDoLoopStmt_1([NotNull] VisualBasic6Parser.DoLoopStmt_1Context context);
-
-	/// <summary>
-	/// Visit a parse tree produced by <see cref="VisualBasic6Parser.doLoopStmt_2"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitDoLoopStmt_2([NotNull] VisualBasic6Parser.DoLoopStmt_2Context context);
-
-	/// <summary>
-	/// Visit a parse tree produced by <see cref="VisualBasic6Parser.doLoopStmt_3"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitDoLoopStmt_3([NotNull] VisualBasic6Parser.DoLoopStmt_3Context context);
+	Result VisitDoLoopStmt([NotNull] VisualBasic6Parser.DoLoopStmtContext context);
 
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="VisualBasic6Parser.endStmt"/>.
@@ -1061,6 +971,13 @@ public interface IVisualBasic6Visitor<Result> : IParseTreeVisitor<Result> {
 	Result VisitSC_Cond([NotNull] VisualBasic6Parser.SC_CondContext context);
 
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="VisualBasic6Parser.sC_CondExpr"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitSC_CondExpr([NotNull] VisualBasic6Parser.SC_CondExprContext context);
+
+	/// <summary>
 	/// Visit a parse tree produced by <see cref="VisualBasic6Parser.sendkeysStmt"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -1416,20 +1333,6 @@ public interface IVisualBasic6Visitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitTypeHint([NotNull] VisualBasic6Parser.TypeHintContext context);
-
-	/// <summary>
-	/// Visit a parse tree produced by <see cref="VisualBasic6Parser.publicPrivateVisibility"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitPublicPrivateVisibility([NotNull] VisualBasic6Parser.PublicPrivateVisibilityContext context);
-
-	/// <summary>
-	/// Visit a parse tree produced by <see cref="VisualBasic6Parser.publicPrivateGlobalVisibility"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitPublicPrivateGlobalVisibility([NotNull] VisualBasic6Parser.PublicPrivateGlobalVisibilityContext context);
 
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="VisualBasic6Parser.visibility"/>.
