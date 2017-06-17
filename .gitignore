@@ -1,2 +1,4 @@
 
-.vs/VBTranspiler/v15/.suo
+*.suo
+bin/
+obj/

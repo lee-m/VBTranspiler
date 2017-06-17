@@ -1,7 +1,0 @@
-syntax: glob
-packages/*
-bin/*
-obj/*
-*.suo
-pageant.lnk
-*.user
