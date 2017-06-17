@@ -27,24 +27,23 @@ namespace VBTranspiler.Parser.UnitTests
     [TestMethod]
     public void TestParsingModuleReferences()
     {
-      Assert.Fail();
-//      string inputSource = @"
-//VERSION 5.00
-//Object = ""{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0""; ""Comdlg32.ocx""
-//Object = ""{3B7C8863-D78F-101B-B9B5-04021C009402}#1.2#0""; ""RICHTX32.OCX""";
+      string inputSource = @"
+VERSION 5.00
+Object = ""{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0""; ""Comdlg32.ocx""
+Object = ""{3B7C8863-D78F-101B-B9B5-04021C009402}#1.2#0""; ""RICHTX32.OCX""";
 
-//      var parseTree = ParseInputSource(inputSource);
-//      Assert.IsNotNull(parseTree.moduleReferences());
+      var parseTree = ParseInputSource(inputSource);
+      Assert.IsNotNull(parseTree.moduleReferences());
 
-//      var references = parseTree.moduleReferences().moduleReference();
-//      Assert.IsNotNull(references);
-//      Assert.AreEqual(2, references.Length);
+      var references = parseTree.moduleReferences().moduleReference();
+      Assert.IsNotNull(references);
+      Assert.AreEqual(2, references.Length);
 
-//      Assert.AreEqual(@"""{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0""", references[0].moduleReferenceGUID().GetText());
-//      Assert.AreEqual(@"""Comdlg32.ocx""", references[0].moduleReferenceComponent().GetText());
+      Assert.AreEqual(@"""{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0""", references[0].moduleReferenceGUID().GetText());
+      Assert.AreEqual(@"""Comdlg32.ocx""", references[0].moduleReferenceComponent().GetText());
 
-//      Assert.AreEqual(@"""{3B7C8863-D78F-101B-B9B5-04021C009402}#1.2#0""", references[1].moduleReferenceGUID().GetText());
-//      Assert.AreEqual(@"""RICHTX32.OCX""", references[1].moduleReferenceComponent().GetText());
+      Assert.AreEqual(@"""{3B7C8863-D78F-101B-B9B5-04021C009402}#1.2#0""", references[1].moduleReferenceGUID().GetText());
+      Assert.AreEqual(@"""RICHTX32.OCX""", references[1].moduleReferenceComponent().GetText());
     }
 
     [TestMethod]

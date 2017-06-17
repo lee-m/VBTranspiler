@@ -692,6 +692,58 @@ public partial class VisualBasic6BaseListener : IVisualBasic6Listener {
 	public virtual void ExitModule([NotNull] VisualBasic6Parser.ModuleContext context) { }
 
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="VisualBasic6Parser.moduleReferences"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterModuleReferences([NotNull] VisualBasic6Parser.ModuleReferencesContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="VisualBasic6Parser.moduleReferences"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitModuleReferences([NotNull] VisualBasic6Parser.ModuleReferencesContext context) { }
+
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="VisualBasic6Parser.moduleReference"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterModuleReference([NotNull] VisualBasic6Parser.ModuleReferenceContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="VisualBasic6Parser.moduleReference"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitModuleReference([NotNull] VisualBasic6Parser.ModuleReferenceContext context) { }
+
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="VisualBasic6Parser.moduleReferenceGUID"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterModuleReferenceGUID([NotNull] VisualBasic6Parser.ModuleReferenceGUIDContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="VisualBasic6Parser.moduleReferenceGUID"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitModuleReferenceGUID([NotNull] VisualBasic6Parser.ModuleReferenceGUIDContext context) { }
+
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="VisualBasic6Parser.moduleReferenceComponent"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterModuleReferenceComponent([NotNull] VisualBasic6Parser.ModuleReferenceComponentContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="VisualBasic6Parser.moduleReferenceComponent"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitModuleReferenceComponent([NotNull] VisualBasic6Parser.ModuleReferenceComponentContext context) { }
+
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="VisualBasic6Parser.moduleHeader"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>

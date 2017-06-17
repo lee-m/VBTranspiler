@@ -383,6 +383,34 @@ public interface IVisualBasic6Visitor<Result> : IParseTreeVisitor<Result> {
 	Result VisitModule([NotNull] VisualBasic6Parser.ModuleContext context);
 
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="VisualBasic6Parser.moduleReferences"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitModuleReferences([NotNull] VisualBasic6Parser.ModuleReferencesContext context);
+
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="VisualBasic6Parser.moduleReference"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitModuleReference([NotNull] VisualBasic6Parser.ModuleReferenceContext context);
+
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="VisualBasic6Parser.moduleReferenceGUID"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitModuleReferenceGUID([NotNull] VisualBasic6Parser.ModuleReferenceGUIDContext context);
+
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="VisualBasic6Parser.moduleReferenceComponent"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitModuleReferenceComponent([NotNull] VisualBasic6Parser.ModuleReferenceComponentContext context);
+
+	/// <summary>
 	/// Visit a parse tree produced by <see cref="VisualBasic6Parser.moduleHeader"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
