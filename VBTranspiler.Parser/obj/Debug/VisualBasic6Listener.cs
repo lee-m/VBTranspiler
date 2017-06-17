@@ -2118,6 +2118,28 @@ public interface IVisualBasic6Listener : IParseTreeListener {
 	void ExitLiteral([NotNull] VisualBasic6Parser.LiteralContext context);
 
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="VisualBasic6Parser.publicPrivateVisibility"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterPublicPrivateVisibility([NotNull] VisualBasic6Parser.PublicPrivateVisibilityContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="VisualBasic6Parser.publicPrivateVisibility"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitPublicPrivateVisibility([NotNull] VisualBasic6Parser.PublicPrivateVisibilityContext context);
+
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="VisualBasic6Parser.publicPrivateGlobalVisibility"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterPublicPrivateGlobalVisibility([NotNull] VisualBasic6Parser.PublicPrivateGlobalVisibilityContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="VisualBasic6Parser.publicPrivateGlobalVisibility"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitPublicPrivateGlobalVisibility([NotNull] VisualBasic6Parser.PublicPrivateGlobalVisibilityContext context);
+
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="VisualBasic6Parser.type"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>

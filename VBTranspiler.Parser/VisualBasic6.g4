@@ -203,7 +203,7 @@ closeStmt
    ;
 
 constStmt
-   : (visibility WS)? CONST WS constSubStmt (WS? COMMA WS? constSubStmt)*
+   : (publicPrivateGlobalVisibility WS)? CONST WS constSubStmt (WS? COMMA WS? constSubStmt)*
    ;
 
 constSubStmt
@@ -237,7 +237,7 @@ endStmt
    ;
 
 enumerationStmt
-   : (visibility WS)? ENUM WS ambiguousIdentifier NEWLINE + (enumerationStmt_Constant)* END_ENUM
+   : (publicPrivateVisibility WS)? ENUM WS ambiguousIdentifier NEWLINE + (enumerationStmt_Constant)* END_ENUM
    ;
 
 enumerationStmt_Constant
@@ -757,6 +757,17 @@ literal
    | NULL
    ;
 
+publicPrivateVisibility 
+	: PRIVATE 
+	| PUBLIC
+	;
+
+publicPrivateGlobalVisibility 
+	: PRIVATE 
+	| PUBLIC
+	| GLOBAL
+	;
+
 type
    : (baseType | complexType) (WS? LPAREN WS? RPAREN)?
    ;
@@ -775,7 +786,7 @@ visibility
    | PUBLIC
    | FRIEND
    | GLOBAL
-   ;
+    ;
 
 // ambiguous keywords
 ambiguousKeyword

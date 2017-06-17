@@ -1349,6 +1349,20 @@ public interface IVisualBasic6Visitor<Result> : IParseTreeVisitor<Result> {
 	Result VisitLiteral([NotNull] VisualBasic6Parser.LiteralContext context);
 
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="VisualBasic6Parser.publicPrivateVisibility"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitPublicPrivateVisibility([NotNull] VisualBasic6Parser.PublicPrivateVisibilityContext context);
+
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="VisualBasic6Parser.publicPrivateGlobalVisibility"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitPublicPrivateGlobalVisibility([NotNull] VisualBasic6Parser.PublicPrivateGlobalVisibilityContext context);
+
+	/// <summary>
 	/// Visit a parse tree produced by <see cref="VisualBasic6Parser.type"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>

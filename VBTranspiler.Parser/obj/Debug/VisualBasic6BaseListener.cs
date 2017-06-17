@@ -2486,6 +2486,32 @@ public partial class VisualBasic6BaseListener : IVisualBasic6Listener {
 	public virtual void ExitLiteral([NotNull] VisualBasic6Parser.LiteralContext context) { }
 
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="VisualBasic6Parser.publicPrivateVisibility"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterPublicPrivateVisibility([NotNull] VisualBasic6Parser.PublicPrivateVisibilityContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="VisualBasic6Parser.publicPrivateVisibility"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitPublicPrivateVisibility([NotNull] VisualBasic6Parser.PublicPrivateVisibilityContext context) { }
+
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="VisualBasic6Parser.publicPrivateGlobalVisibility"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterPublicPrivateGlobalVisibility([NotNull] VisualBasic6Parser.PublicPrivateGlobalVisibilityContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="VisualBasic6Parser.publicPrivateGlobalVisibility"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitPublicPrivateGlobalVisibility([NotNull] VisualBasic6Parser.PublicPrivateGlobalVisibilityContext context) { }
+
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="VisualBasic6Parser.type"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
