@@ -58,7 +58,7 @@ namespace VBTranspiler.Parser
       mIndent += 1;
 
       Debug.Write("".PadLeft(mIndent));
-      Debug.WriteLine(string.Format("Enter {0}", mParser.RuleNames[ctx.RuleIndex]));
+      Debug.WriteLine(string.Format("Enter {0} {1}", mParser.RuleNames[ctx.RuleIndex], ctx.Start.Text));
     }
 
     public void ExitEveryRule(ParserRuleContext ctx)
