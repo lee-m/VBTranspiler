@@ -428,5 +428,21 @@ End Sub
       //Used to fail with a parse error.
       ParseInputSource(inputSource);
     }
+
+    [TestMethod()]
+    public void TestMemberCallExpressionSplitOverMultipleLines()
+    {
+      string inputSource = @"Public Sub foo() 
+
+    If .CellSet(0) _
+		.Value = 0 Then
+
+	End If
+	
+End Sub";
+
+      //Used to fail with a parse error.
+      ParseInputSource(inputSource);
+    }
   }
 }
