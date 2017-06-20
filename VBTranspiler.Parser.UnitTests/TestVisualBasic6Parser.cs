@@ -444,5 +444,19 @@ End Sub";
       //Used to fail with a parse error.
       ParseInputSource(inputSource);
     }
+
+    [TestMethod()]
+    public void TestNestedProcedureCallReturningArray()
+    {
+      string inputSource = @"Private Sub Foo()
+
+  If IsNull(SomeFuncReturningArray(bar)(0)) Then
+  End If
+  
+End Sub";
+
+      //Used to fail with a parse error.
+      ParseInputSource(inputSource);
+    }
   }
 }

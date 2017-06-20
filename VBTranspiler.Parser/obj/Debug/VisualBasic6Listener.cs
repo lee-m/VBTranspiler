@@ -1964,6 +1964,17 @@ public interface IVisualBasic6Listener : IParseTreeListener {
 	void ExitICS_S_ProcedureOrArrayCall([NotNull] VisualBasic6Parser.ICS_S_ProcedureOrArrayCallContext context);
 
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="VisualBasic6Parser.iCS_S_NestedProcedureCall"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterICS_S_NestedProcedureCall([NotNull] VisualBasic6Parser.ICS_S_NestedProcedureCallContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="VisualBasic6Parser.iCS_S_NestedProcedureCall"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitICS_S_NestedProcedureCall([NotNull] VisualBasic6Parser.ICS_S_NestedProcedureCallContext context);
+
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="VisualBasic6Parser.iCS_S_MembersCall"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>

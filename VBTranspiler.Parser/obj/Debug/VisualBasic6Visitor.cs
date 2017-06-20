@@ -1251,6 +1251,13 @@ public interface IVisualBasic6Visitor<Result> : IParseTreeVisitor<Result> {
 	Result VisitICS_S_ProcedureOrArrayCall([NotNull] VisualBasic6Parser.ICS_S_ProcedureOrArrayCallContext context);
 
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="VisualBasic6Parser.iCS_S_NestedProcedureCall"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitICS_S_NestedProcedureCall([NotNull] VisualBasic6Parser.ICS_S_NestedProcedureCallContext context);
+
+	/// <summary>
 	/// Visit a parse tree produced by <see cref="VisualBasic6Parser.iCS_S_MembersCall"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
