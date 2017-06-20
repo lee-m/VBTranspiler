@@ -211,6 +211,7 @@ Begin VB.Form SomeForm
               Underline       =   0   'False
               Italic          =   0   'False
               Strikethrough   =   0   'False
+              Shortcut        =   {F1}
           EndProperty
           BeginProperty SomeNestedProp 
               Name            =   ""Tahoma""
@@ -247,7 +248,7 @@ End
 
       Assert.AreEqual("Font", secondNestedProp.cp_NestedProperty().ambiguousIdentifier().GetText());
       Assert.IsNotNull(secondNestedProp.cp_NestedProperty());
-      Assert.AreEqual(7, secondNestedProp.cp_NestedProperty().cp_Properties().Length);
+      Assert.AreEqual(8, secondNestedProp.cp_NestedProperty().cp_Properties().Length);
     }
 
     [TestMethod()]
