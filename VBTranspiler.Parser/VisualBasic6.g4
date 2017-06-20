@@ -9,7 +9,7 @@
 /*
 * Visual Basic 6.0 Grammar for ANTLR4
 *
-* This is an approximate grammar for Visual Basic 6.0 and the parser at
+* This is a grammar for Visual Basic 6.0 and the parser at
 * https://github.com/uwol/vb6parser. The grammar is derived from the 
 * Visual Basic 6.0 language reference 
 * http://msdn.microsoft.com/en-us/library/aa338033%28v=vs.60%29.aspx 
@@ -909,6 +909,7 @@ ambiguousKeyword
    | NOT
    | NOTHING
    | NULL
+   | OBJECT
    | ON
    | OPEN
    | OPTIONAL
@@ -1011,18 +1012,18 @@ AS
    ;
 
 
+BEEP
+   : B E E P
+   ;
+
+
 BEGIN
    : B E G I N
    ;
 
 
 BEGINPROPERTY
-	: B E G I N P R O P E R T Y
-	;
-
-
-BEEP
-   : B E E P
+   : B E G I N P R O P E R T Y
    ;
 
 
@@ -1242,8 +1243,8 @@ END
 
 
 ENDPROPERTY
-	: E N D P R O P E R T Y
-	;
+   : E N D P R O P E R T Y
+   ;
 
 
 ENUM
@@ -1516,8 +1517,8 @@ NULL
    ;
 
 OBJECT 
-	: O B J E C T
-	;
+   : O B J E C T
+   ;
 
 ON
    : O N
@@ -2033,8 +2034,7 @@ DOUBLELITERAL
 FILENUMBER
    : HASH LETTERORDIGIT +
    ;
-
-
+   
 OCTALLITERAL
 	: (PLUS | MINUS)? '&O' [0-7] + AMPERSAND?
 	;
