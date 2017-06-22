@@ -473,5 +473,17 @@ End Sub";
       //Used to fail with a parse error.
       ParseInputSource(inputSource);
     }
+
+    [TestMethod()]
+    public void TestOnErrorGotoStatementEndingInColon()
+    {
+      string inputSource = @"Private Sub Test()
+On Error GoTo ErrorHandler:
+ErrorHandler:
+End Sub";
+
+      //Used to fail with a parse error.
+      ParseInputSource(inputSource);
+    }
   }
 }
