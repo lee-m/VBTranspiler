@@ -495,6 +495,13 @@ public interface IVisualBasic6Visitor<Result> : IParseTreeVisitor<Result> {
 	Result VisitCp_PropertyName([NotNull] VisualBasic6Parser.Cp_PropertyNameContext context);
 
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="VisualBasic6Parser.cp_PropertyValue"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitCp_PropertyValue([NotNull] VisualBasic6Parser.Cp_PropertyValueContext context);
+
+	/// <summary>
 	/// Visit a parse tree produced by <see cref="VisualBasic6Parser.cp_NestedProperty"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>

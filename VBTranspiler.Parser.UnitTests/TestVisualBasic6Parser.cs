@@ -97,16 +97,16 @@ End
       Assert.AreEqual(4, controlProperties.Length);
 
       Assert.AreEqual("BorderStyle", controlProperties[0].cp_SingleProperty().cp_PropertyName().GetText());
-      Assert.AreEqual("3", controlProperties[0].cp_SingleProperty().literal().GetText());
+      Assert.AreEqual("3", controlProperties[0].cp_SingleProperty().cp_PropertyValue().literal().GetText());
 
       Assert.AreEqual("Caption", controlProperties[1].cp_SingleProperty().cp_PropertyName().GetText());
-      Assert.AreEqual(@"""Some Form""", controlProperties[1].cp_SingleProperty().literal().GetText());
+      Assert.AreEqual(@"""Some Form""", controlProperties[1].cp_SingleProperty().cp_PropertyValue().literal().GetText());
 
       Assert.AreEqual("ClientHeight", controlProperties[2].cp_SingleProperty().cp_PropertyName().GetText());
-      Assert.AreEqual("7950", controlProperties[2].cp_SingleProperty().literal().GetText());
+      Assert.AreEqual("7950", controlProperties[2].cp_SingleProperty().cp_PropertyValue().literal().GetText());
 
       Assert.AreEqual("MaxButton", controlProperties[3].cp_SingleProperty().cp_PropertyName().GetText());
-      Assert.AreEqual("0", controlProperties[3].cp_SingleProperty().literal().GetText());
+      Assert.AreEqual("0", controlProperties[3].cp_SingleProperty().cp_PropertyValue().literal().GetText());
     }
 
     [TestMethod()]
@@ -140,6 +140,7 @@ Begin VB.Form SomeForm
          TextRTF         =   $""SomeForm.frx"":008A
          RightMargin     =   1.31072e5
          CurCell.BeginLfDblClick=   0   'False
+         Shortcut        =   ^F
       End
   End
 End
@@ -155,16 +156,16 @@ End
       Assert.AreEqual(5, controlProperties.Length);
 
       Assert.AreEqual("BorderStyle", controlProperties[0].cp_SingleProperty().cp_PropertyName().GetText());
-      Assert.AreEqual("3", controlProperties[0].cp_SingleProperty().literal().GetText());
+      Assert.AreEqual("3", controlProperties[0].cp_SingleProperty().cp_PropertyValue().literal().GetText());
 
       Assert.AreEqual("Caption", controlProperties[1].cp_SingleProperty().cp_PropertyName().GetText());
-      Assert.AreEqual(@"""Some Form""", controlProperties[1].cp_SingleProperty().literal().GetText());
+      Assert.AreEqual(@"""Some Form""", controlProperties[1].cp_SingleProperty().cp_PropertyValue().literal().GetText());
 
       Assert.AreEqual("ClientHeight", controlProperties[2].cp_SingleProperty().cp_PropertyName().GetText());
-      Assert.AreEqual("7950", controlProperties[2].cp_SingleProperty().literal().GetText());
+      Assert.AreEqual("7950", controlProperties[2].cp_SingleProperty().cp_PropertyValue().literal().GetText());
 
       Assert.AreEqual("MaxButton", controlProperties[3].cp_SingleProperty().cp_PropertyName().GetText());
-      Assert.AreEqual("0", controlProperties[3].cp_SingleProperty().literal().GetText());
+      Assert.AreEqual("0", controlProperties[3].cp_SingleProperty().cp_PropertyValue().literal().GetText());
 
       //Frame nested control block
       var frameControlBlock = controlProperties[4].controlProperties();
@@ -176,7 +177,7 @@ End
       //Button nested control block
       var buttonControlBlock = frameControlBlock.cp_Properties().Last().controlProperties();
 
-      Assert.AreEqual(11, buttonControlBlock.cp_Properties().Length);
+      Assert.AreEqual(12, buttonControlBlock.cp_Properties().Length);
       Assert.AreEqual("VB.CommandButton", buttonControlBlock.cp_ControlType().GetText());
       Assert.AreEqual("SomeButton", buttonControlBlock.cp_ControlIdentifier().GetText());
 

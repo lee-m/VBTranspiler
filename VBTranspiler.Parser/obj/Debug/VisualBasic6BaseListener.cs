@@ -900,6 +900,19 @@ public partial class VisualBasic6BaseListener : IVisualBasic6Listener {
 	public virtual void ExitCp_PropertyName([NotNull] VisualBasic6Parser.Cp_PropertyNameContext context) { }
 
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="VisualBasic6Parser.cp_PropertyValue"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterCp_PropertyValue([NotNull] VisualBasic6Parser.Cp_PropertyValueContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="VisualBasic6Parser.cp_PropertyValue"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitCp_PropertyValue([NotNull] VisualBasic6Parser.Cp_PropertyValueContext context) { }
+
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="VisualBasic6Parser.cp_NestedProperty"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>

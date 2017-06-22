@@ -776,6 +776,17 @@ public interface IVisualBasic6Listener : IParseTreeListener {
 	void ExitCp_PropertyName([NotNull] VisualBasic6Parser.Cp_PropertyNameContext context);
 
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="VisualBasic6Parser.cp_PropertyValue"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterCp_PropertyValue([NotNull] VisualBasic6Parser.Cp_PropertyValueContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="VisualBasic6Parser.cp_PropertyValue"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitCp_PropertyValue([NotNull] VisualBasic6Parser.Cp_PropertyValueContext context);
+
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="VisualBasic6Parser.cp_NestedProperty"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
