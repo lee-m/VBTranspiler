@@ -39,10 +39,10 @@ Object = ""{3B7C8863-D78F-101B-B9B5-04021C009402}#1.2#0""; ""RICHTX32.OCX""";
       Assert.IsNotNull(references);
       Assert.AreEqual(2, references.Length);
 
-      Assert.AreEqual(@"""{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0""", references[0].moduleReferenceGUID().GetText());
+      Assert.AreEqual(@"""{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0""", references[0].moduleReferenceValue().GetText());
       Assert.AreEqual(@"""Comdlg32.ocx""", references[0].moduleReferenceComponent().GetText());
 
-      Assert.AreEqual(@"""{3B7C8863-D78F-101B-B9B5-04021C009402}#1.2#0""", references[1].moduleReferenceGUID().GetText());
+      Assert.AreEqual(@"""{3B7C8863-D78F-101B-B9B5-04021C009402}#1.2#0""", references[1].moduleReferenceValue().GetText());
       Assert.AreEqual(@"""RICHTX32.OCX""", references[1].moduleReferenceComponent().GetText());
     }
 
@@ -486,5 +486,17 @@ End Sub";
       //Used to fail with a parse error.
       ParseInputSource(inputSource);
     }
+
+    [TestMethod()]
+    public void TestParsingModuleReferenceToVBPProjectFile()
+    {
+      string inputSource = @"VERSION 5.00
+Object = ""*\A..\..\SomeFile.vbp""";
+
+      //Used to fail with a parse error.
+      ParseInputSource(inputSource);
+    }
+
+
   }
 }

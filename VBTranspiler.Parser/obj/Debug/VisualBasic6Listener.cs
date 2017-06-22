@@ -622,15 +622,15 @@ public interface IVisualBasic6Listener : IParseTreeListener {
 	void ExitModuleReference([NotNull] VisualBasic6Parser.ModuleReferenceContext context);
 
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="VisualBasic6Parser.moduleReferenceGUID"/>.
+	/// Enter a parse tree produced by <see cref="VisualBasic6Parser.moduleReferenceValue"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterModuleReferenceGUID([NotNull] VisualBasic6Parser.ModuleReferenceGUIDContext context);
+	void EnterModuleReferenceValue([NotNull] VisualBasic6Parser.ModuleReferenceValueContext context);
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="VisualBasic6Parser.moduleReferenceGUID"/>.
+	/// Exit a parse tree produced by <see cref="VisualBasic6Parser.moduleReferenceValue"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitModuleReferenceGUID([NotNull] VisualBasic6Parser.ModuleReferenceGUIDContext context);
+	void ExitModuleReferenceValue([NotNull] VisualBasic6Parser.ModuleReferenceValueContext context);
 
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="VisualBasic6Parser.moduleReferenceComponent"/>.

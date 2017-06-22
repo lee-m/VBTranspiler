@@ -397,11 +397,11 @@ public interface IVisualBasic6Visitor<Result> : IParseTreeVisitor<Result> {
 	Result VisitModuleReference([NotNull] VisualBasic6Parser.ModuleReferenceContext context);
 
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="VisualBasic6Parser.moduleReferenceGUID"/>.
+	/// Visit a parse tree produced by <see cref="VisualBasic6Parser.moduleReferenceValue"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitModuleReferenceGUID([NotNull] VisualBasic6Parser.ModuleReferenceGUIDContext context);
+	Result VisitModuleReferenceValue([NotNull] VisualBasic6Parser.ModuleReferenceValueContext context);
 
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="VisualBasic6Parser.moduleReferenceComponent"/>.

@@ -718,17 +718,17 @@ public partial class VisualBasic6BaseListener : IVisualBasic6Listener {
 	public virtual void ExitModuleReference([NotNull] VisualBasic6Parser.ModuleReferenceContext context) { }
 
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="VisualBasic6Parser.moduleReferenceGUID"/>.
+	/// Enter a parse tree produced by <see cref="VisualBasic6Parser.moduleReferenceValue"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterModuleReferenceGUID([NotNull] VisualBasic6Parser.ModuleReferenceGUIDContext context) { }
+	public virtual void EnterModuleReferenceValue([NotNull] VisualBasic6Parser.ModuleReferenceValueContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="VisualBasic6Parser.moduleReferenceGUID"/>.
+	/// Exit a parse tree produced by <see cref="VisualBasic6Parser.moduleReferenceValue"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitModuleReferenceGUID([NotNull] VisualBasic6Parser.ModuleReferenceGUIDContext context) { }
+	public virtual void ExitModuleReferenceValue([NotNull] VisualBasic6Parser.ModuleReferenceValueContext context) { }
 
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="VisualBasic6Parser.moduleReferenceComponent"/>.

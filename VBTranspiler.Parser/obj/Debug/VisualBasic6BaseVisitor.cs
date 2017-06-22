@@ -583,7 +583,7 @@ public partial class VisualBasic6BaseVisitor<Result> : AbstractParseTreeVisitor<
 	public virtual Result VisitModuleReference([NotNull] VisualBasic6Parser.ModuleReferenceContext context) { return VisitChildren(context); }
 
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="VisualBasic6Parser.moduleReferenceGUID"/>.
+	/// Visit a parse tree produced by <see cref="VisualBasic6Parser.moduleReferenceValue"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -591,7 +591,7 @@ public partial class VisualBasic6BaseVisitor<Result> : AbstractParseTreeVisitor<
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitModuleReferenceGUID([NotNull] VisualBasic6Parser.ModuleReferenceGUIDContext context) { return VisitChildren(context); }
+	public virtual Result VisitModuleReferenceValue([NotNull] VisualBasic6Parser.ModuleReferenceValueContext context) { return VisitChildren(context); }
 
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="VisualBasic6Parser.moduleReferenceComponent"/>.
