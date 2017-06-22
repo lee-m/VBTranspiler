@@ -459,5 +459,19 @@ End Sub";
       //Used to fail with a parse error.
       ParseInputSource(inputSource);
     }
+
+    [TestMethod()]
+    public void TestExplicitCallStatementSplitOverMultipleLines()
+    {
+      string inputSource = @"Private Sub Test()
+
+    Call foo.bar. _
+        baz(, , abc, xyz)
+
+End Sub";
+
+      //Used to fail with a parse error.
+      ParseInputSource(inputSource);
+    }
   }
 }
