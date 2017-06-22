@@ -497,6 +497,21 @@ Object = ""*\A..\..\SomeFile.vbp""";
       ParseInputSource(inputSource);
     }
 
+    [TestMethod()]
+    public void TestParsingStringConcatenationSplitOverMultipleLines()
+    {
+      string inputSource = @"Sub Test()
 
+x = ""foo"" _
+& ""bar""
+
+x = ""foo"" & _
+""bar""
+
+End Sub";
+
+      //Used to fail with a parse error.
+      ParseInputSource(inputSource);
+    }
   }
 }
