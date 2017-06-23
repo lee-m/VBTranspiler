@@ -528,5 +528,20 @@ End";
       //Used to fail with a parse error.
       ParseInputSource(inputSource);
     }
+
+    [TestMethod()]
+    public void TestWithNewStatement()
+    {
+      string inputSource = @"Private Sub Test()
+
+  With New clsFoo
+    .Display
+  End With
+  
+End Sub";
+
+      //Used to fail with a parse error.
+      ParseInputSource(inputSource);
+    }
   }
 }
