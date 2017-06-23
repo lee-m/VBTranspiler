@@ -543,5 +543,15 @@ End Sub";
       //Used to fail with a parse error.
       ParseInputSource(inputSource);
     }
+
+    [TestMethod()]
+    public void TestParsingOfArgumentWithEnumerationDefaultValue()
+    {
+      string inputSource = @"Private Sub Test(Optional ByVal foo As enmSomeEnum = enmSomeEnum.Bar)
+End Sub";
+
+      //Used to fail with a parse error.
+      ParseInputSource(inputSource);
+    }
   }
 }
