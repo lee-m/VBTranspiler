@@ -553,5 +553,18 @@ End Sub";
       //Used to fail with a parse error.
       ParseInputSource(inputSource);
     }
+
+    [TestMethod()]
+    public void TestParsingArrayVariableWithTypeHint()
+    {
+      string inputSource = @"Private Sub Test()
+
+Dim asFoo$()
+
+End Sub";
+
+      //Used to fail with a parse error.
+      ParseInputSource(inputSource);
+    }
   }
 }
